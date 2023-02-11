@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+
+
+
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_truyen_tranh"
+        android:icon="@drawable/baseline_auto_awesome_mosaic_24"
+        android:title="@string/truyen_tranh"/>
+
+    <item
+        android:id="@+id/me"
+        android:title=""/>
+
+    <item
+        android:id="@+id/navigation_truyen_chu"
+        android:icon="@drawable/truyenchu"
+        android:title="@string/truyen_chu"/>
+
+</menu>
