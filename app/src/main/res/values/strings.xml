@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">GZ Truyen</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="truyen_tranh">Truyện Tranh</string>
+    <string name="truyen_chu">Truyện chữ</string>
+    <string name="kham_pha">Khám Phá</string>
+    <string name="toi">Tôi</string>
+    <string name="todo">TODO</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="de_cu">Truyện Đề Cử</string>
 </resources>

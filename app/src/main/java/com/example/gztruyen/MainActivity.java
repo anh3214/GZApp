@@ -2,6 +2,8 @@ package com.example.gztruyen;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -21,7 +23,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
-
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
 
@@ -32,8 +33,8 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         //createNewUser("test1@gmail.com","123456");
-        //login("test1@gmail.com","123456");
-        postData();
+        login("test1@gmail.com","123456");
+        //postData();
     }
     @Override
     public void onStart() {
