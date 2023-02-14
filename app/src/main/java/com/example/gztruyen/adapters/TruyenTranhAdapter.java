@@ -1,65 +1,52 @@
 package com.example.gztruyen.adapters;
 
-import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gztruyen.R;
+import com.example.gztruyen.ViewHolder.TruyenTranhViewHolder;
 import com.example.gztruyen.model.ComicModel;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class TruyenTranhAdapter extends BaseAdapter {
-    private List<ComicModel> mList;
-    private Context mContext;
+public class TruyenTranhAdapter extends RecyclerView.Adapter<TruyenTranhViewHolder> {
+    private final List<ComicModel> mList;
 
-    public TruyenTranhAdapter( Context mContext,List<ComicModel> mList) {
+    public TruyenTranhAdapter(List<ComicModel> mList) {
         this.mList = mList;
-        this.mContext = mContext;
+    }
+    @NonNull
+    @Override
+    public TruyenTranhViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_holder,parent,false);
+        return new TruyenTranhViewHolder(view);
     }
 
     @Override
-    public int getCount() {
-        return mList.size();
-    }
+    public void onBindViewHolder(@NonNull TruyenTranhViewHolder holder, int position) {
+        ComicModel comicModel = mList.get(position);
+        if(comicModel == null){
+            return;
+        }
 
-    @Override
-    public Object getItem(int i) {
-        return mList.get(i);
+        Picasso.get().load(comicModel.getImage()).into( holder.imageView);
+        holder.titleView.setText(comicModel.getName());
     }
 
     @Override
     public long getItemId(int i) {
         return i;
     }
-    public  static class ViewHolder{
-    ImageView imageView;
-    TextView textView;
-    }
-    @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        ViewHolder holder = null;
-        if (view == null) {
-            holder = new ViewHolder();
-            // if it's not recycled, initialize some attributes
-            LayoutInflater inflater = ((Activity)mContext).getLayoutInflater();
-            view =inflater.inflate(R.layout.view_holder,null);
-            holder.imageView = view.findViewById(R.id.imageView);
-            holder.textView = view.findViewById(R.id.textView2);
 
-            view.setTag(holder);
-        } else {
-            holder = (ViewHolder) view.getTag();
-        }
-        ImageView imageView = view.findViewById(R.id.imageView);
-        holder.textView.setText(mList.get(i).Name);
-        Picasso.get().load(mList.get(i).getImage()).into(imageView);
-        return view;
+    @Override
+    public int getItemCount() {
+        return mList.size();
     }
 }
