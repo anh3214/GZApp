@@ -2,26 +2,24 @@ package com.example.gztruyen.adapters;
 
 import android.app.Activity;
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.gztruyen.R;
-import com.example.gztruyen.model.TruyenTranhModel;
+import com.example.gztruyen.model.ComicModel;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class TruyenTranhAdapter extends BaseAdapter {
-    private List<TruyenTranhModel> mList;
+    private List<ComicModel> mList;
     private Context mContext;
 
-    public TruyenTranhAdapter( Context mContext,List<TruyenTranhModel> mList) {
+    public TruyenTranhAdapter( Context mContext,List<ComicModel> mList) {
         this.mList = mList;
         this.mContext = mContext;
     }

@@ -1,23 +1,15 @@
 package com.example.gztruyen.model;
 
-import android.net.Uri;
-
-import java.util.Date;
-
-public class TruyenTranhModel {
+public class ComicModel {
     public String id;
-
     public String Name;
-
     public String Image;
-
     public String Description;
 
-
-    public TruyenTranhModel() {
+    public ComicModel() {
     }
 
-    public TruyenTranhModel(String id, String name, String description, String image) {
+    public ComicModel(String id, String name, String description, String image) {
         this.id = id;
         Name = name;
         Description = description;
