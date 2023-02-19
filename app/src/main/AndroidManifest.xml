@@ -22,6 +22,7 @@
             </intent-filter>
         </activity>
         <activity
+            android:windowSoftInputMode="adjustNothing|stateHidden"
             android:name=".Activity.SearchActivity"
             android:exported="false" />
         <activity
