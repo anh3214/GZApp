@@ -1,7 +1,9 @@
 package com.example.gztruyen.ViewHolder;
 
 import android.content.Context;
+import android.media.Image;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,6 +16,8 @@ public class RcvViewHolderSearch extends RecyclerView.ViewHolder implements View
 
     private Context context;
     private TextView tvSearch;
+    private ImageView imgComicSearch;
+
     public RcvViewHolderSearch(@NonNull View itemView, Context context) {
         super(itemView);
         bindingView(itemView);
@@ -22,11 +26,16 @@ public class RcvViewHolderSearch extends RecyclerView.ViewHolder implements View
     }
 
     private void bindingAction(View itemView) {
+        imgComicSearch.setOnClickListener(this::clickOnSearchImg);
+    }
 
+    private void clickOnSearchImg(View view) {
+        Toast.makeText(context, "u press me", Toast.LENGTH_SHORT).show();
     }
 
     private void bindingView(View itemView) {
         tvSearch = itemView.findViewById(R.id.tvSearch);
+        imgComicSearch = itemView.findViewById(R.id.imgComicSearch);
     }
 
     public void setNameComic(String name_here) {
