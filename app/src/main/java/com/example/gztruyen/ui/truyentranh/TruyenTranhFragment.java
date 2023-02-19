@@ -48,6 +48,9 @@ public class TruyenTranhFragment extends Fragment {
         binding = FragmentTruyenTranhBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         context = root.getContext();
+        adapter = new TruyenTranhAdapter(getTruyen());
+        gridLayoutManager = new GridLayoutManager(context,3);
+        Log.d("Data",""+adapter.getItemCount());
         bindingView(root);
         bindingAction();
         return root;
@@ -61,8 +64,8 @@ public class TruyenTranhFragment extends Fragment {
 
     private void bindingView(View view){
         btnSearch = view.findViewById(R.id.btnSearch);
-        gridLayoutManager = new GridLayoutManager(context,3);
         imageSlider = view.findViewById(R.id.imageSlider);
+        item_truyen = view.findViewById(R.id.item_truyen);
     }
 
     private void bindingAction(){
@@ -70,7 +73,7 @@ public class TruyenTranhFragment extends Fragment {
         imageSlider.setImageList(getImageList());
         imageSlider.setItemClickListener(this::itemClicker);
         item_truyen.setLayoutManager(gridLayoutManager);
-        item_truyen.setAdapter(adapter = new TruyenTranhAdapter(getTruyen()));
+        item_truyen.setAdapter(adapter);
     }
     private void itemClicker(int i) {
         Log.d( "Items","Clicked" + i);
@@ -92,12 +95,24 @@ public class TruyenTranhFragment extends Fragment {
         ComicModel modelTruyen1 = new ComicModel("ẤDSD","Voi Tu Tiên","ádadsasd","https://bit.ly/2BteuF2");
         ComicModel modelTruyen2 = new ComicModel("ẤDSD","Pháp Sư bí Ẩn","ádadsasd","https://bit.ly/3fLJf72");
         ComicModel modelTruyen3 = new ComicModel("ẤDSD","Bola Bolo","ádadsasd","https://bit.ly/3fLJf72");
+        ComicModel modelTruyen4 = new ComicModel("ẤDSD","Bola Bolo","ádadsasd","https://bit.ly/3fLJf72");
+        ComicModel modelTruyen5 = new ComicModel("ẤDSD","Bola Bolo","ádadsasd","https://bit.ly/3fLJf72");
+        ComicModel modelTruyen6 = new ComicModel("ẤDSD","Bola Bolo","ádadsasd","https://bit.ly/3fLJf72");
+        ComicModel modelTruyen7 = new ComicModel("ẤDSD","Bola Bolo","ádadsasd","https://bit.ly/3fLJf72");
+        ComicModel modelTruyen8 = new ComicModel("ẤDSD","Bola Bolo","ádadsasd","https://bit.ly/3fLJf72");
+        ComicModel modelTruyen9 = new ComicModel("ẤDSD","Bola Bolo","ádadsasd","https://bit.ly/3fLJf72");
 
 
         models.add(modelTruyen);
         models.add(modelTruyen1);
         models.add(modelTruyen2);
         models.add(modelTruyen3);
+        models.add(modelTruyen4);
+        models.add(modelTruyen5);
+        models.add(modelTruyen6);
+        models.add(modelTruyen7);
+        models.add(modelTruyen8);
+        models.add(modelTruyen9);
         return models;
     }
     private void btnSearchOnClick(View view) {
