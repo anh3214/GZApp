@@ -31,7 +31,7 @@ public class RcvAdapterSearch extends RecyclerView.Adapter<RcvViewHolderSearch> 
 
     @Override
     public void onBindViewHolder(@NonNull RcvViewHolderSearch holder, int position) {
-        holder.setNameComic("name here");
+        holder.setNameComic(list.get(position));
     }
 
     @Override
