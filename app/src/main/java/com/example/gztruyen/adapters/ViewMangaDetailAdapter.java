@@ -23,7 +23,7 @@ public class ViewMangaDetailAdapter extends FragmentStatePagerAdapter {
         switch (position){
             case 0:
                 return new DetailFragment();
-            case 2:
+            case 1:
                 return new ChaptersFragment();
 
             default:

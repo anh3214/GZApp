@@ -16,6 +16,11 @@
 <<<<<<< Updated upstream
             android:name=".LoginActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".Activity.MangaDetailActivity"
+            android:exported="false" />
+
         <activity
             android:name=".ui.login.LoginActivity"
             android:exported="false"
