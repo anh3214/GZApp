@@ -25,11 +25,11 @@ public class ChaptersFragment extends Fragment {
 
     private Context context;
 
-    private void bindingView(ViewGroup container){
-        rcvChapters = container.findViewById(R.id.rcvChapters);
+    private void bindingView(View view){
+        rcvChapters = view.findViewById(R.id.rcvChapters);
     }
 
-    private void bindingAction(ViewGroup container){
+    private void bindingAction(View view){
 
     }
 
@@ -41,21 +41,23 @@ public class ChaptersFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        List<ChapterModel> chapterlist = new ArrayList<>();
+        View rootView = inflater.inflate(R.layout.fragment_chapters, container, false);
+        bindingView(rootView);
+        bindingAction(rootView);
+        List<ChapterModel> chapterList = new ArrayList<>();
         for(int i = 0; i < 50; i++){
-            chapterlist.add(new ChapterModel(0L, "Chapter " + i, "", true));
+            chapterList.add(new ChapterModel((long)i, "Chapter " + i, "", true));
         }
-        ChaptersAdapter adapter = new ChaptersAdapter(chapterlist);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this.context);
+        ChaptersAdapter adapter = new ChaptersAdapter(chapterList);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this.getContext());
         rcvChapters.setAdapter(adapter);
         rcvChapters.setLayoutManager(layoutManager);
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_chapters, container, false);
+        return rootView;
     }
 }

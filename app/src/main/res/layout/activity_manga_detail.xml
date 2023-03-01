@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".Activity.MangaDetailActivity">
 
     <com.google.android.material.tabs.TabLayout
@@ -33,15 +33,15 @@
         android:layout_marginStart="160dp"
         android:layout_marginEnd="163dp"
         android:layout_marginBottom="36dp"
-        android:text="Button"
+        android:text="Xem Tiếp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent" />
 
-            <androidx.viewpager.widget.ViewPager
+    <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPaper"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
