@@ -1,5 +1,7 @@
 package com.example.gztruyen.ui.truyentranh;
 
+import static android.content.Intent.getIntent;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -120,4 +122,6 @@ public class TruyenTranhFragment extends Fragment {
         Intent intent = new Intent(context, SearchActivity.class);
         startActivity(intent);
     }
+
+
 }

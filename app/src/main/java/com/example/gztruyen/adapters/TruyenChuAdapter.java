@@ -26,7 +26,7 @@ public class TruyenChuAdapter extends RecyclerView.Adapter<TruyenChuViewHolder>{
     @Override
     public TruyenChuViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_holder,parent,false);
-        return new TruyenChuViewHolder(view);
+        return new TruyenChuViewHolder(view,parent.getContext());
     }
 
     @Override
