@@ -21,8 +21,8 @@ public class TruyenTranhViewHolder extends RecyclerView.ViewHolder {
     public TextView titleView;
     private Context context;
     
-    private void bindindView(){
-
+    private void bindindView() {
+    }
     private LinearLayout item_truyen_line;
 
     public TruyenTranhViewHolder(@NonNull View itemView) {
