@@ -15,7 +15,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.TextView;
 
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
@@ -23,11 +22,8 @@ import com.denzcoskun.imageslider.models.SlideModel;
 import com.example.gztruyen.Activity.SearchActivity;
 import com.example.gztruyen.R;
 import com.example.gztruyen.adapters.TruyenChuAdapter;
-import com.example.gztruyen.adapters.TruyenTranhAdapter;
 import com.example.gztruyen.databinding.FragmentTruyenChuBinding;
-import com.example.gztruyen.databinding.FragmentTruyenTranhBinding;
 import com.example.gztruyen.model.ComicModel;
-import com.example.gztruyen.ui.truyentranh.TruyenTranhViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
