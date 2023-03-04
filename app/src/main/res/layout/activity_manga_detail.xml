@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:context=".Activity.MangaDetailActivity">
-
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
@@ -16,6 +15,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView4"
         app:tabSelectedTextColor="@color/black" />
+
 
     <ImageView
         android:id="@+id/imageView4"
@@ -42,6 +42,9 @@
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPaper"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
+        android:layout_height="448dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
 </androidx.constraintlayout.widget.ConstraintLayout>
