@@ -22,21 +22,18 @@ public class TruyenTranhViewHolder extends RecyclerView.ViewHolder {
     private Context context;
     
     private void bindindView() {
-    }
-    private LinearLayout item_truyen_line;
-
-    public TruyenTranhViewHolder(@NonNull View itemView) {
-        super(itemView);
         imageView = itemView.findViewById(R.id.imageView);
         titleView = itemView.findViewById(R.id.txView);
         item_truyen_line = itemView.findViewById(R.id.item_truyen_line);
-        item_truyen_line.setOnClickListener(this::btnItemDetail);
     }
+    private LinearLayout item_truyen_line;
+
     private void btnItemDetail(View view) {
         Log.d("Error","Truyen Tranh ne");
     }
     private void bindingAction(){
         imageView.setOnClickListener(this::onImgClick);
+        item_truyen_line.setOnClickListener(this::btnItemDetail);
     }
 
     private void onImgClick(View view) {
