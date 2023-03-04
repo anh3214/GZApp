@@ -36,6 +36,8 @@ public class Home extends AppCompatActivity {
     private void Test(){
         Intent intent = getIntent();
         String test = intent.getStringExtra("Mesage");
-        Log.d("DataTxe",test);
+        if(test != null){
+            Log.d("DataTxe",test);
+        }
     }
 }
