@@ -21,9 +21,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiAdapter {
     private static ApiService sFirestoreApi;
-
-    @SuppressLint("StaticFieldLeak")
-    private static Context mContext;
+    public static Context mContext;
 
     public ApiAdapter(Context context) {
         mContext = context;
