@@ -6,7 +6,10 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+
 import com.example.gztruyen.databinding.ActivityHomeBinding;
 
 
@@ -28,5 +31,13 @@ public class Home extends AppCompatActivity {
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupWithNavController(binding.bottomNavigation, navController);
+        Test();
+    }
+    private void Test(){
+        Intent intent = getIntent();
+        String test = intent.getStringExtra("Mesage");
+        if(test != null){
+            Log.d("DataTxe",test);
+        }
     }
 }
