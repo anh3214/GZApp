@@ -3,12 +3,22 @@ package com.example.gztruyen.Activity;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.gztruyen.R;
+import com.example.gztruyen.adapters.ChaptersAdapter;
+import com.example.gztruyen.adapters.TruyenTranhAdapter;
+import com.example.gztruyen.model.ChapterModel;
+import com.example.gztruyen.model.ComicModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,6 +36,7 @@ public class DetailFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private RecyclerView item_truyen;
     public DetailFragment() {
         // Required empty public constructor
     }
@@ -60,7 +71,47 @@ public class DetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_detail, container, false);
+
+        View rootView = inflater.inflate(R.layout.fragment_detail, container, false);
+
+        bindingView(rootView);
+        bindingAction(rootView);
+
+        TruyenTranhAdapter adapter = new TruyenTranhAdapter(getTruyen());
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this.getContext(),3);
+        item_truyen.setAdapter(adapter);
+        item_truyen.setLayoutManager(gridLayoutManager);
+
+        return rootView;
+    }
+    private List<ComicModel> getTruyen() {
+//        List<ComicModel> models = new ArrayList<>();
+//        ComicModel modelTruyen = new ComicModel("ẤDSD","Tiên Tôn Hổ","ádadsasd","https://bit.ly/2YoJ77H");
+//        ComicModel modelTruyen1 = new ComicModel("ẤDSD","Voi Tu Tiên","ádadsasd","https://bit.ly/2BteuF2");
+//        ComicModel modelTruyen2 = new ComicModel("ẤDSD","Pháp Sư bí Ẩn","ádadsasd","https://bit.ly/3fLJf72");
+//        ComicModel modelTruyen3 = new ComicModel("ẤDSD","Bola Bolo","ádadsasd","https://st.nettruyenup.com/data/comics/173/chuyen-sinh-thanh-kiem.jpg");
+//        ComicModel modelTruyen4 = new ComicModel("ẤDSD","Bola Bolo","ádadsasd","https://st.nettruyenup.com/data/comics/138/bong-mot-ngay-xuyen-thanh-hoang-hau-ac-d-7720.jpg");
+//        ComicModel modelTruyen5 = new ComicModel("ẤDSD","Bola Bolo","ádadsasd","https://st.nettruyenup.com/data/comics/183/chuyen-khong-the.jpg");
+//        ComicModel modelTruyen6 = new ComicModel("ẤDSD","Bola Bolo","ádadsasd","https://st.nettruyenup.com/data/comics/54/1001-cach-chinh-phuc-chong-yeu.jpg");
+//        ComicModel modelTruyen7 = new ComicModel("ẤDSD","Bola Bolo","ádadsasd","https://st.nettruyenup.com/data/comics/72/tu-luc-bat-dau-lien-vo-dich.jpg");
+//        ComicModel modelTruyen8 = new ComicModel("ẤDSD","Bola Bolo","ádadsasd","https://st.nettruyenup.com/data/comics/177/quyet-chien.jpg");
+//
+//        models.add(modelTruyen);
+//        models.add(modelTruyen1);
+//        models.add(modelTruyen2);
+//        models.add(modelTruyen3);
+//        models.add(modelTruyen4);
+//        models.add(modelTruyen5);
+//        models.add(modelTruyen6);
+//        models.add(modelTruyen7);
+//        models.add(modelTruyen8);
+        return null;
+    }
+    private void bindingView(View view){
+        item_truyen = view.findViewById(R.id.item_truyen);
+    }
+
+    private void bindingAction(View view) {
+
     }
 }

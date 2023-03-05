@@ -3,10 +3,13 @@ package com.example.gztruyen;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.gztruyen.adapters.ApiAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -17,7 +20,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,6 +27,7 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
+    private Context context2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
+        context2 = this;
         //createNewUser("test1@gmail.com","123456");
         login("test1@gmail.com","123456");
         //postData();
@@ -49,9 +53,29 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            Log.d("Debug","Log sucessful");
-                        }else{
-                            Log.d("Debug","Log false");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            user.getIdToken(true).addOnCompleteListener(idTokenTask -> {
+                                if (idTokenTask.isSuccessful()) {
+                                    mAuth.getCurrentUser().getIdToken(true)
+                                            .addOnSuccessListener(result -> {
+                                                String token = result.getToken();
+                                                SharedPreferences mPrefs = getSharedPreferences("myPrefs", MODE_PRIVATE);
+                                                SharedPreferences.Editor prefsEditor = mPrefs.edit();
+                                                prefsEditor.putString("token", token);
+                                                prefsEditor.apply();
+                                                setUpToken();
+                                                Intent intent = new Intent(context2,Home.class);
+                                                context2.startActivity(intent);
+                                            })
+                                            .addOnFailureListener(e -> {
+                                                // Lấy token thất bại
+                                            });
+                                } else {
+                                    //Toast.makeText(LoginActivity.this, "Failed to get ID token", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        } else {
+                            //Toast.makeText(LoginActivity.this, "Authentication failed", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -68,6 +92,9 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+    private void setUpToken(){
+        ApiAdapter apiAdapter = new ApiAdapter(this);
     }
     private void resetPass(String email){
         mAuth.sendPasswordResetEmail(email)
