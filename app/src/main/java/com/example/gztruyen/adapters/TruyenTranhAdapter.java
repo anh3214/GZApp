@@ -1,6 +1,5 @@
 package com.example.gztruyen.adapters;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,14 +12,21 @@ import com.example.gztruyen.ViewHolder.TruyenTranhViewHolder;
 import com.example.gztruyen.model.ComicModel;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class TruyenTranhAdapter extends RecyclerView.Adapter<TruyenTranhViewHolder> {
-    private final List<ComicModel> mList;
+    private List<ComicModel> mList;
 
     public TruyenTranhAdapter(List<ComicModel> mList) {
         this.mList = mList;
+    }
+
+    public TruyenTranhAdapter() {
+    }
+
+    public void updateData(List<ComicModel> data) {
+        this.mList = data;
+        notifyDataSetChanged();
     }
     @NonNull
     @Override
@@ -37,7 +43,7 @@ public class TruyenTranhAdapter extends RecyclerView.Adapter<TruyenTranhViewHold
         }
 
         //Picasso.get().load(comicModel.getImage()).into( holder.imageView);
-        holder.titleView.setText(comicModel.getName());
+        holder.titleView.setText(comicModel.getFields().getTitle().getStringValue());
     }
 
     @Override

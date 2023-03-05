@@ -6,6 +6,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.example.gztruyen.adapters.ApiAdapter;
+import com.example.gztruyen.adapters.TruyenTranhAdapter;
 import com.example.gztruyen.model.Chap;
 import com.example.gztruyen.model.ComicModel;
 import com.example.gztruyen.model.QueryResponse;
@@ -24,21 +25,19 @@ import retrofit2.Response;
 
 public class FireStoreApi {
 
-    public static List<ComicModel> getAllCommic(){
-        ApiService firestoreApi = ApiAdapter.getFirestoreApi();
-        Call<QueryResponse<ComicModel>> call = firestoreApi.basicIformationComic("TruyenTranh");
+    public static List<ComicModel> getAllCommic(TruyenTranhAdapter adapter){
         List<ComicModel> comicModelss = new ArrayList<>();
-        call.enqueue(new Callback<QueryResponse<ComicModel>>() {
+        ApiAdapter.getInstance().basicIformationComic(new Callback<QueryResponse<ComicModel>>() {
             @Override
-            public void onResponse(Call<QueryResponse<ComicModel>> call, Response<QueryResponse<ComicModel>> response) {
+            public void onResponse(@NonNull Call<QueryResponse<ComicModel>> call, @NonNull Response<QueryResponse<ComicModel>> response) {
                 if (response.isSuccessful()) {
                     QueryResponse<ComicModel> queryResponse = response.body();
                     // Xử lý kết quả trả về ở đây
                     comicModelss.addAll(queryResponse.getDocuments());
-//                    Log.d("Status",""+response.code());
-//                    Log.d("Body",""+response.body().getDocuments());
-//                    Log.d("Test",""+queryResponse.getDocuments());
-//                    Log.d("Data",""+comicModelss.size());
+                    Log.d("Data",""+comicModelss.size());
+                    if(comicModelss.size() > 0){
+                        adapter.updateData(comicModelss);
+                    }
                 } else {
                     Log.d("Error","Get data falseSSE");
                 }
@@ -47,15 +46,15 @@ public class FireStoreApi {
             public void onFailure(Call<QueryResponse<ComicModel>> call, Throwable t) {
                 Log.d("Error","Get data false: " + t);
             }
-        });
+        },"TruyenTranh");
         return comicModelss;
     }
 
     public static List<Chap> getAllChap(String type, String name){
-        ApiService firestoreApi = ApiAdapter.getFirestoreApi();
-        Call<QueryResponse<Chap>> call = firestoreApi.getAllChap(type,name);
+
+
         List<Chap> chaps = new ArrayList<>();
-        call.enqueue(new Callback<QueryResponse<Chap>>() {
+        ApiAdapter.getInstance().getAllChap(new Callback<QueryResponse<Chap>>() {
             @Override
             public void onResponse(Call<QueryResponse<Chap>> call, Response<QueryResponse<Chap>> response) {
                 if (response.isSuccessful()) {
@@ -65,17 +64,16 @@ public class FireStoreApi {
 //                    Log.d("Status",""+response.code());
 //                    Log.d("Body",""+response.body().getDocuments());
 //                    Log.d("Test",""+queryResponse.getDocuments());
-//                    Log.d("Data",""+comicModelss.size());
+                    Log.d("Data",""+chaps.size());
                 } else {
                     Log.d("Error","Get data falseSSE");
                 }
             }
-
             @Override
             public void onFailure(Call<QueryResponse<Chap>> call, Throwable t) {
                 Log.d("Error","Get data false: " + t);
             }
-        });
+        },"TruyenTranh","Naruto");
         return chaps;
     }
 

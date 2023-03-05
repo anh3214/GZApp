@@ -63,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
                                                 SharedPreferences.Editor prefsEditor = mPrefs.edit();
                                                 prefsEditor.putString("token", token);
                                                 prefsEditor.apply();
-                                                setUpToken();
                                                 Intent intent = new Intent(context2,Home.class);
                                                 context2.startActivity(intent);
                                             })
@@ -92,9 +91,6 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 });
-    }
-    private void setUpToken(){
-        ApiAdapter apiAdapter = new ApiAdapter(this);
     }
     private void resetPass(String email){
         mAuth.sendPasswordResetEmail(email)

@@ -1,55 +1,44 @@
 package com.example.gztruyen.adapters;
 
 
-import static android.content.Context.MODE_PRIVATE;
-
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.util.Log;
-
 import com.example.gztruyen.api.ApiService;
+import com.example.gztruyen.model.Chap;
+import com.example.gztruyen.model.ComicModel;
+import com.example.gztruyen.model.QueryResponse;
 
-import java.io.IOException;
-
-import okhttp3.Interceptor;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
+import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiAdapter {
+    private static ApiAdapter mInstance;
     private static ApiService sFirestoreApi;
-    public static Context mContext;
 
-    public ApiAdapter(Context context) {
-        mContext = context;
-    }
-
-    public static ApiService getFirestoreApi() {
+    private ApiAdapter() {
         if (sFirestoreApi == null) {
-            SharedPreferences mPrefs = mContext.getSharedPreferences("myPrefs", MODE_PRIVATE);
-            String token = mPrefs.getString("token", "");
 
-            OkHttpClient client = new OkHttpClient.Builder()
-                    .addInterceptor(chain -> {
-                        Request request = chain.request();
-                        Request.Builder requestBuilder = request.newBuilder();
-                        requestBuilder.addHeader("Authorization", "Bearer "+token); // Kiểm tra phần này
-                        return chain.proceed(requestBuilder.build());
-                    })
-                    .build();
-
-            ApiService retrofit = new Retrofit.Builder()
+            sFirestoreApi = new Retrofit.Builder()
                     .baseUrl("https://firestore.googleapis.com/v1/projects/appproject-61e7e/")
-                    .client(client)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
                     .create(ApiService.class);
-
-            sFirestoreApi = retrofit;
         }
-        return sFirestoreApi;
+    }
+    public static synchronized ApiAdapter getInstance() {
+        if (mInstance == null) {
+            mInstance = new ApiAdapter();
+        }
+        return mInstance;
+    }
+
+    public void basicIformationComic(Callback<QueryResponse<ComicModel>> callback,String type) {
+        Call<QueryResponse<ComicModel>> call = sFirestoreApi.basicIformationComic(type);
+        call.enqueue(callback);
+    }
+
+    public void getAllChap(Callback<QueryResponse<Chap>> callback, String type, String name) {
+        Call<QueryResponse<Chap>> call = sFirestoreApi.getAllChap(type,name);
+        call.enqueue(callback);
     }
 }

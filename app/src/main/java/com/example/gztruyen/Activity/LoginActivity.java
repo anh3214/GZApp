@@ -51,32 +51,14 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            user.getIdToken(true).addOnCompleteListener(idTokenTask -> {
-                                if (idTokenTask.isSuccessful()) {
-                                    mAuth.getCurrentUser().getIdToken(true)
-                                            .addOnSuccessListener(result -> {
-                                                String token = result.getToken();
-                                                SharedPreferences mPrefs = getSharedPreferences("myPrefs", MODE_PRIVATE);
-                                                SharedPreferences.Editor prefsEditor = mPrefs.edit();
-                                                prefsEditor.putString("token", token);
-                                                prefsEditor.apply();
-                                                ApiAdapter.mContext = LoginActivity.this;
-                                                Intent intent = new Intent(LoginActivity.this,Home.class);
-                                                startActivity(intent);
-                                            })
-                                            .addOnFailureListener(e -> {
-                                                // Lấy token thất bại
-                                            });
-                                } else {
-                                    Toast.makeText(LoginActivity.this, "Failed to get ID token", Toast.LENGTH_SHORT).show();
-                                }
-                            });
+                            Intent intent = new Intent(LoginActivity.this,Home.class);
+                            startActivity(intent);
                         } else {
                             Toast.makeText(LoginActivity.this, "Login failed", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
+        finish();
     }
 
     @Override
