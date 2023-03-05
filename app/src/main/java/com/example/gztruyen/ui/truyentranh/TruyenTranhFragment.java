@@ -58,9 +58,12 @@ public class TruyenTranhFragment extends Fragment {
         binding = FragmentTruyenTranhBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         context = root.getContext();
+        adapter = new TruyenTranhAdapter();
+        adapter.updateData(getTruyen(adapter));
         gridLayoutManager = new GridLayoutManager(context,3);
         bindingView(root);
         bindingAction();
+
         return root;
     }
 
@@ -77,12 +80,11 @@ public class TruyenTranhFragment extends Fragment {
     }
 
     private void bindingAction(){
+        item_truyen.setAdapter(adapter);
         btnSearch.setOnClickListener(this::btnSearchOnClick);
         imageSlider.setImageList(getImageList());
         imageSlider.setItemClickListener(this::itemClicker);
         item_truyen.setLayoutManager(gridLayoutManager);
-        item_truyen.setAdapter(adapter);
-        adapter = new TruyenTranhAdapter(getTruyen());
     }
     private void itemClicker(int i) {
         Log.d( "Items","Clicked" + i);
@@ -98,8 +100,8 @@ public class TruyenTranhFragment extends Fragment {
         }
         return imageList;
     }
-    private List<ComicModel> getTruyen() {
-        List<ComicModel> list = FireStoreApi.getAllCommic();
+    private List<ComicModel> getTruyen(TruyenTranhAdapter adapter) {
+        List<ComicModel> list = FireStoreApi.getAllCommic(adapter);
         return list;
     }
     private void btnSearchOnClick(View view) {

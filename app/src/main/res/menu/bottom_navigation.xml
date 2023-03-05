@@ -14,7 +14,8 @@
 
     <item
         android:id="@+id/me"
-        android:title=""/>
+        android:title="Me"
+        android:icon="@drawable/me"/>
 
     <item
         android:id="@+id/navigation_truyen_chu"
