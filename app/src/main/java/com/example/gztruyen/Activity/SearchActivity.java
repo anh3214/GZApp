@@ -54,10 +54,6 @@ public class SearchActivity extends AppCompatActivity {
 
     private List<ComicModel> fakeDataComic() {
         List<ComicModel> list = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            ComicModel c = new ComicModel("12" + i, "name ne " + i, "test des", "bac");
-            list.add(c);
-        }
         return list;
     }
 

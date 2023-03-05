@@ -36,7 +36,7 @@ public class TruyenTranhAdapter extends RecyclerView.Adapter<TruyenTranhViewHold
             return;
         }
 
-        Picasso.get().load(comicModel.getImage()).into( holder.imageView);
+        //Picasso.get().load(comicModel.getImage()).into( holder.imageView);
         holder.titleView.setText(comicModel.getName());
     }
 
