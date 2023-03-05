@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.gztruyen.CommonUltil.Common;
+import com.example.gztruyen.CommonUltil.FakeData;
 import com.example.gztruyen.R;
 import com.example.gztruyen.adapters.RcvAdapterSearch;
 import com.example.gztruyen.model.ComicModel;
@@ -40,6 +41,7 @@ public class SearchActivity extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference myRef;
     List<Object> listTest;
+    FakeData fake;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,24 +80,7 @@ public class SearchActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("/comic/wvEf5hR6QQFuCwxTvYBC/id_comic");
 
-        listTest = new ArrayList<>();
-        myRef.addListenerForSingleValueEvent(new ValueEventListener(){
-
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                 String a = snapshot.getValue(String.class);
-                 Log.d("thanhdt", a);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-        for (Object o :
-                listTest) {
-            Log.d("thanhdt", o.toString());
-        }
+        fake = new FakeData();
     }
 
     private void loadRecyclerSearch(List<ComicModel> list){
