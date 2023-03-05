@@ -47,9 +47,7 @@ public class TruyenChuFragment extends Fragment {
         binding = FragmentTruyenChuBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         context = root.getContext();
-        adapter = new TruyenChuAdapter(getTruyen());
         gridLayoutManager = new GridLayoutManager(context,3);
-        Log.d("Data",""+adapter.getItemCount());
         bindingView(root);
         bindingAction();
         return root;
@@ -73,6 +71,7 @@ public class TruyenChuFragment extends Fragment {
         imageSlider.setItemClickListener(this::itemClicker);
         item_truyen.setLayoutManager(gridLayoutManager);
         item_truyen.setAdapter(adapter);
+        adapter = new TruyenChuAdapter(getTruyen());
     }
     private void itemClicker(int i) {
         Log.d( "Items","Clicked" + i);
@@ -89,30 +88,7 @@ public class TruyenChuFragment extends Fragment {
         return imageList;
     }
     private List<ComicModel> getTruyen() {
-        List<ComicModel> models = new ArrayList<>();
-        ComicModel modelTruyen = new ComicModel("ẤDSD","Tiên Tôn Hổ","ádadsasd","https://bit.ly/2YoJ77H");
-        ComicModel modelTruyen1 = new ComicModel("ẤDSD","Voi Tu Tiên","ádadsasd","https://bit.ly/2BteuF2");
-        ComicModel modelTruyen2 = new ComicModel("ẤDSD","Pháp Sư bí Ẩn","ádadsasd","https://bit.ly/3fLJf72");
-        ComicModel modelTruyen3 = new ComicModel("ẤDSD","Bola Bolo","ádadsasd","https://st.nettruyenup.com/data/comics/173/chuyen-sinh-thanh-kiem.jpg");
-        ComicModel modelTruyen4 = new ComicModel("ẤDSD","Bola Bolo","ádadsasd","https://st.nettruyenup.com/data/comics/138/bong-mot-ngay-xuyen-thanh-hoang-hau-ac-d-7720.jpg");
-        ComicModel modelTruyen5 = new ComicModel("ẤDSD","Bola Bolo","ádadsasd","https://st.nettruyenup.com/data/comics/183/chuyen-khong-the.jpg");
-        ComicModel modelTruyen6 = new ComicModel("ẤDSD","Bola Bolo","ádadsasd","https://st.nettruyenup.com/data/comics/54/1001-cach-chinh-phuc-chong-yeu.jpg");
-        ComicModel modelTruyen7 = new ComicModel("ẤDSD","Bola Bolo","ádadsasd","https://st.nettruyenup.com/data/comics/72/tu-luc-bat-dau-lien-vo-dich.jpg");
-        ComicModel modelTruyen8 = new ComicModel("ẤDSD","Bola Bolo","ádadsasd","https://st.nettruyenup.com/data/comics/177/quyet-chien.jpg");
-        ComicModel modelTruyen9 = new ComicModel("ẤDSD","Bola Bolo","ádadsasd","https://st.nettruyenup.com/data/comics/230/ta-vo-dich-luc-nao.jpg");
-
-
-        models.add(modelTruyen);
-        models.add(modelTruyen1);
-        models.add(modelTruyen2);
-        models.add(modelTruyen3);
-        models.add(modelTruyen4);
-        models.add(modelTruyen5);
-        models.add(modelTruyen6);
-        models.add(modelTruyen7);
-        models.add(modelTruyen8);
-        models.add(modelTruyen9);
-        return models;
+        return null;
     }
     private void btnSearchOnClick(View view) {
 //        Toast.makeText(context, "As u wish", Toast.LENGTH_SHORT).show();
