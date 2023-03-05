@@ -1,14 +1,21 @@
 package com.example.gztruyen.ViewHolder;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.gztruyen.Activity.ComicReading;
+import com.example.gztruyen.Activity.FrmComicReading;
 import com.example.gztruyen.R;
 import com.example.gztruyen.model.ComicModel;
 
@@ -31,7 +38,18 @@ public class RcvViewHolderSearch extends RecyclerView.ViewHolder {
 
     private void clickOnSearchImg(View view) {
         String name = tvSearchRCV.getText().toString();
+        Intent i = new Intent(context, ComicReading.class);
+
+        Bundle bundle = new Bundle();
+        bundle.putString("chapter", "1");
+        i.putExtras(bundle);
         Toast.makeText(context, "u press me: " + name, Toast.LENGTH_SHORT).show();
+        context.startActivity(i);
+        //finish act
+        Context pContext = itemView.getContext();
+        if (pContext instanceof Activity) {
+            ((Activity) pContext).finish();
+        }
     }
 
     private void bindingView(View itemView) {
