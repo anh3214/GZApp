@@ -31,13 +31,5 @@ public class Home extends AppCompatActivity {
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupWithNavController(binding.bottomNavigation, navController);
-        Test();
-    }
-    private void Test(){
-        Intent intent = getIntent();
-        String test = intent.getStringExtra("Mesage");
-        if(test != null){
-            Log.d("DataTxe",test);
-        }
     }
 }
