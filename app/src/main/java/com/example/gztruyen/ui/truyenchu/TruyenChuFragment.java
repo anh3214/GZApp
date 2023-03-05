@@ -28,6 +28,11 @@ import com.example.gztruyen.databinding.FragmentTruyenChuBinding;
 import com.example.gztruyen.databinding.FragmentTruyenTranhBinding;
 import com.example.gztruyen.model.ComicModel;
 import com.example.gztruyen.ui.truyentranh.TruyenTranhViewModel;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +46,9 @@ public class TruyenChuFragment extends Fragment {
     private ImageButton btnSearch;
     private GridLayoutManager gridLayoutManager;
     private Context context;
+    private final static String TAG = "Dat";
 
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
     public TruyenChuFragment() {
     }
 
@@ -69,6 +76,8 @@ public class TruyenChuFragment extends Fragment {
         btnSearch = view.findViewById(R.id.btnSearch);
         imageSlider = view.findViewById(R.id.imageSlider);
         item_truyen = view.findViewById(R.id.item_truyen);
+
+
     }
 
     private void bindingAction(){
@@ -94,28 +103,44 @@ public class TruyenChuFragment extends Fragment {
     }
     private List<ComicModel> getTruyen() {
         List<ComicModel> models = new ArrayList<>();
-        ComicModel modelTruyen = new ComicModel("ẤDSD","Tiên Tôn Hổ","ádadsasd","https://bit.ly/2YoJ77H");
-        ComicModel modelTruyen1 = new ComicModel("ẤDSD","Voi Tu Tiên","ádadsasd","https://bit.ly/2BteuF2");
-        ComicModel modelTruyen2 = new ComicModel("ẤDSD","Pháp Sư bí Ẩn","ádadsasd","https://bit.ly/3fLJf72");
-        ComicModel modelTruyen3 = new ComicModel("ẤDSD","Bola Bolo","ádadsasd","https://st.nettruyenup.com/data/comics/173/chuyen-sinh-thanh-kiem.jpg");
-        ComicModel modelTruyen4 = new ComicModel("ẤDSD","Bola Bolo","ádadsasd","https://st.nettruyenup.com/data/comics/138/bong-mot-ngay-xuyen-thanh-hoang-hau-ac-d-7720.jpg");
-        ComicModel modelTruyen5 = new ComicModel("ẤDSD","Bola Bolo","ádadsasd","https://st.nettruyenup.com/data/comics/183/chuyen-khong-the.jpg");
-        ComicModel modelTruyen6 = new ComicModel("ẤDSD","Bola Bolo","ádadsasd","https://st.nettruyenup.com/data/comics/54/1001-cach-chinh-phuc-chong-yeu.jpg");
-        ComicModel modelTruyen7 = new ComicModel("ẤDSD","Bola Bolo","ádadsasd","https://st.nettruyenup.com/data/comics/72/tu-luc-bat-dau-lien-vo-dich.jpg");
-        ComicModel modelTruyen8 = new ComicModel("ẤDSD","Bola Bolo","ádadsasd","https://st.nettruyenup.com/data/comics/177/quyet-chien.jpg");
-        ComicModel modelTruyen9 = new ComicModel("ẤDSD","Bola Bolo","ádadsasd","https://st.nettruyenup.com/data/comics/230/ta-vo-dich-luc-nao.jpg");
+        db.collection("Truyện Chữ")
+                .whereEqualTo("capital", true)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
 
-
-        models.add(modelTruyen);
-        models.add(modelTruyen1);
-        models.add(modelTruyen2);
-        models.add(modelTruyen3);
-        models.add(modelTruyen4);
-        models.add(modelTruyen5);
-        models.add(modelTruyen6);
-        models.add(modelTruyen7);
-        models.add(modelTruyen8);
-        models.add(modelTruyen9);
+                            }
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+//        ComicModel modelTruyen = new ComicModel("ẤDSD","Tiên Tôn Hổ","ádadsasd","https://bit.ly/2YoJ77H");
+//        ComicModel modelTruyen1 = new ComicModel("ẤDSD","Voi Tu Tiên","ádadsasd","https://bit.ly/2BteuF2");
+//        ComicModel modelTruyen2 = new ComicModel("ẤDSD","Pháp Sư bí Ẩn","ádadsasd","https://bit.ly/3fLJf72");
+//        ComicModel modelTruyen3 = new ComicModel("ẤDSD","Bola Bolo","ádadsasd","https://st.nettruyenup.com/data/comics/173/chuyen-sinh-thanh-kiem.jpg");
+//        ComicModel modelTruyen4 = new ComicModel("ẤDSD","Bola Bolo","ádadsasd","https://st.nettruyenup.com/data/comics/138/bong-mot-ngay-xuyen-thanh-hoang-hau-ac-d-7720.jpg");
+//        ComicModel modelTruyen5 = new ComicModel("ẤDSD","Bola Bolo","ádadsasd","https://st.nettruyenup.com/data/comics/183/chuyen-khong-the.jpg");
+//        ComicModel modelTruyen6 = new ComicModel("ẤDSD","Bola Bolo","ádadsasd","https://st.nettruyenup.com/data/comics/54/1001-cach-chinh-phuc-chong-yeu.jpg");
+//        ComicModel modelTruyen7 = new ComicModel("ẤDSD","Bola Bolo","ádadsasd","https://st.nettruyenup.com/data/comics/72/tu-luc-bat-dau-lien-vo-dich.jpg");
+//        ComicModel modelTruyen8 = new ComicModel("ẤDSD","Bola Bolo","ádadsasd","https://st.nettruyenup.com/data/comics/177/quyet-chien.jpg");
+//        ComicModel modelTruyen9 = new ComicModel("ẤDSD","Bola Bolo","ádadsasd","https://st.nettruyenup.com/data/comics/230/ta-vo-dich-luc-nao.jpg");
+//
+//
+//        models.add(modelTruyen);
+//        models.add(modelTruyen1);
+//        models.add(modelTruyen2);
+//        models.add(modelTruyen3);
+//        models.add(modelTruyen4);
+//        models.add(modelTruyen5);
+//        models.add(modelTruyen6);
+//        models.add(modelTruyen7);
+//        models.add(modelTruyen8);
+//        models.add(modelTruyen9);
         return models;
     }
     private void btnSearchOnClick(View view) {
