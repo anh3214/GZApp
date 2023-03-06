@@ -105,7 +105,7 @@ public class DetailFragment extends Fragment {
 //        models.add(modelTruyen6);
 //        models.add(modelTruyen7);
 //        models.add(modelTruyen8);
-        return null;
+        return new ArrayList<>();
     }
     private void bindingView(View view){
         item_truyen = view.findViewById(R.id.item_truyen);

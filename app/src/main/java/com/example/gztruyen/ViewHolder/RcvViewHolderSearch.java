@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gztruyen.Activity.ComicReading;
 import com.example.gztruyen.Activity.FrmComicReading;
+import com.example.gztruyen.Activity.MangaDetailActivity;
 import com.example.gztruyen.R;
 import com.example.gztruyen.model.ComicModel;
 
@@ -37,10 +38,10 @@ public class RcvViewHolderSearch extends RecyclerView.ViewHolder {
     }
 
     private void clickOnSearchImg(View view) {
-        Intent i = new Intent(context, ComicReading.class);
-        Bundle bundle = new Bundle();
-        bundle.putString("chapter", "1");
-        i.putExtras(bundle);
+        Intent i = new Intent(context, MangaDetailActivity.class);
+//        Bundle bundle = new Bundle();
+//        bundle.putString("chapter", "1");
+//        i.putExtras(bundle);
         context.startActivity(i);
         //finish act
         Context pContext = itemView.getContext();
