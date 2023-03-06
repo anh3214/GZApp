@@ -7,6 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FakeData {
+
+    private static FakeData instance;
+
+    public static FakeData getInstance(){
+        if(instance == null)
+            instance = new FakeData();
+        return instance;
+    }
     public List<PageComic> fakeListPageComic(){
         List<PageComic> list = new ArrayList<>();
         for (int i = 0; i < 35; i++) {
