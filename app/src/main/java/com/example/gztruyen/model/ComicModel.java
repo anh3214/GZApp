@@ -1,11 +1,13 @@
 package com.example.gztruyen.model;
 
+import java.util.List;
+
 public class ComicModel {
     private String name;
     private Fields fields;
     private String createTime;
     private String updateTime;
-    private String Avatar;
+    private List<String> Avatar;
 
     public ComicModel(String name, Fields fields, String createTime, String updateTime) {
         this.name = name;
@@ -14,11 +16,11 @@ public class ComicModel {
         this.updateTime = updateTime;
     }
 
-    public String getAvatar() {
+    public List<String> getAvatar() {
         return Avatar;
     }
 
-    public void setAvatar(String avatar) {
+    public void setAvatar(List<String> avatar) {
         Avatar = avatar;
     }
 
@@ -63,14 +65,14 @@ public class ComicModel {
     }
 
     public static class ImageShow {
-        private String referenceValue;
+        private String stringValue;
 
         public ImageShow(String referenceValue) {
-            this.referenceValue = referenceValue;
+            this.stringValue = referenceValue;
         }
 
         public String getReferenceValue() {
-            return referenceValue;
+            return stringValue;
         }
     }
 

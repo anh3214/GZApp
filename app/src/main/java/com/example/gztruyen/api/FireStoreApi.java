@@ -2,6 +2,7 @@ package com.example.gztruyen.api;
 
 import android.net.Uri;
 import android.util.Log;
+import android.widget.Adapter;
 
 import androidx.annotation.NonNull;
 
@@ -10,14 +11,15 @@ import com.example.gztruyen.adapters.TruyenTranhAdapter;
 import com.example.gztruyen.model.Chap;
 import com.example.gztruyen.model.ComicModel;
 import com.example.gztruyen.model.QueryResponse;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -27,6 +29,7 @@ public class FireStoreApi {
 
     public static List<ComicModel> getAllCommic(TruyenTranhAdapter adapter){
         List<ComicModel> comicModelss = new ArrayList<>();
+        List<String> url = new ArrayList<>();
         ApiAdapter.getInstance().basicIformationComic(new Callback<QueryResponse<ComicModel>>() {
             @Override
             public void onResponse(@NonNull Call<QueryResponse<ComicModel>> call, @NonNull Response<QueryResponse<ComicModel>> response) {
@@ -37,6 +40,9 @@ public class FireStoreApi {
                     Log.d("Data",""+comicModelss.size());
                     if(comicModelss.size() > 0){
                         adapter.updateData(comicModelss);
+                        for (ComicModel comic: comicModelss) {
+                            getUrlImage(comic.getFields().getImageShow().getReferenceValue(), adapter,comic.getName());
+                        }
                     }
                 } else {
                     Log.d("Error","Get data falseSSE");
@@ -51,7 +57,6 @@ public class FireStoreApi {
     }
 
     public static List<Chap> getAllChap(String type, String name){
-
 
         List<Chap> chaps = new ArrayList<>();
         ApiAdapter.getInstance().getAllChap(new Callback<QueryResponse<Chap>>() {
@@ -77,22 +82,31 @@ public class FireStoreApi {
         return chaps;
     }
 
-    private List<String> getUrlImage(String path){
+    public static List<String> getUrlImage(String path, TruyenTranhAdapter adapter,String name){
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReferenceFromUrl(path); // path thư mục của bạn
-        List<String> uriString = new ArrayList<>();
-        storageRef.listAll().addOnSuccessListener(listResult -> {
+        List<Task<Uri>> tasks = new ArrayList<>();
+        List<String> urls = new ArrayList<>();
+        // Lấy danh sách các file trong thư mục
+        Task<ListResult> listTask = storageRef.listAll();
+        listTask.addOnSuccessListener(listResult -> {
+            // Lấy tất cả các URL ảnh
             for (StorageReference item : listResult.getItems()) {
-                item.getDownloadUrl().addOnSuccessListener(uri -> {
-                    uriString.add(uri.toString());
-                    // xử lý uri ở đây
-                });
+                Task<Uri> uriTask = item.getDownloadUrl();
+                tasks.add(uriTask);
             }
-            Log.d("URI", ""+uriString.size());
-        }).addOnFailureListener(e -> {
-            // xử lý lỗi ở đây
-            Log.d("Error", e.getMessage());
+
+            // Đợi tất cả các nhiệm vụ hoàn thành
+            Tasks.whenAllComplete(tasks).addOnSuccessListener(result -> {
+                for (Task<Uri> task : tasks) {
+                    if (task.isSuccessful()) {
+                        urls.add(task.getResult().toString());
+                    }
+                }
+                adapter.updateUrl(urls,name);
+                Log.d("Demo",""+urls);
+            });
         });
-        return uriString;
+        return urls;
     }
 }
