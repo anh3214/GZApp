@@ -40,8 +40,6 @@ public class SearchActivity extends AppCompatActivity {
     private Common common;
     FirebaseDatabase database;
     DatabaseReference myRef;
-    List<Object> listTest;
-    FakeData fake;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +49,7 @@ public class SearchActivity extends AppCompatActivity {
         bindingView();
         bindingAction();
 
-        loadRecyclerSearch(fake.fakeDataComic());
+        loadRecyclerSearch(FakeData.getInstance().fakeDataComic());
     }
 
     private void bindingAction() {
@@ -79,8 +77,6 @@ public class SearchActivity extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("/comic/wvEf5hR6QQFuCwxTvYBC/id_comic");
-
-        fake = new FakeData();
     }
 
     private void loadRecyclerSearch(List<ComicModel> list){

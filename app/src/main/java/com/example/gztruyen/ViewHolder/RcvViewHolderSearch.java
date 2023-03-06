@@ -37,13 +37,10 @@ public class RcvViewHolderSearch extends RecyclerView.ViewHolder {
     }
 
     private void clickOnSearchImg(View view) {
-        String name = tvSearchRCV.getText().toString();
         Intent i = new Intent(context, ComicReading.class);
-
         Bundle bundle = new Bundle();
         bundle.putString("chapter", "1");
         i.putExtras(bundle);
-        Toast.makeText(context, "u press me: " + name, Toast.LENGTH_SHORT).show();
         context.startActivity(i);
         //finish act
         Context pContext = itemView.getContext();
