@@ -42,7 +42,7 @@ public class FireStoreApi {
                     if(comicModelss.size() > 0){
                         adapter.updateData(comicModelss);
                         for (ComicModel comic: comicModelss) {
-                            getUrlImage(comic.getFields().getImageShow().getReferenceValue(), adapter,comic.getName());
+                            getUrlImageComic(comic.getFields().getImageShow().getReferenceValue(), adapter,comic.getName());
                         }
                     }
                 } else {
@@ -59,6 +59,7 @@ public class FireStoreApi {
     }
     public static List<ComicModel> getAllStory(TruyenChuAdapter adapter){
         List<ComicModel> storyModelss = new ArrayList<>();
+        List<String> url = new ArrayList<>();
         ApiAdapter.getInstance().basicIformationComic(new Callback<QueryResponse<ComicModel>>() {
             @Override
             public void onResponse(@NonNull Call<QueryResponse<ComicModel>> call, @NonNull Response<QueryResponse<ComicModel>> response) {
@@ -69,6 +70,9 @@ public class FireStoreApi {
                     Log.d("Data",""+storyModelss.size());
                     if(storyModelss.size() > 0){
                         adapter.updateData(storyModelss);
+                        for (ComicModel comic: storyModelss) {
+                            getUrlImageStory(comic.getFields().getImageShow().getReferenceValue(), adapter,comic.getName());
+                        }
                     }
                 } else {
                     Log.d("Error","Get data falseSSE");
@@ -108,7 +112,7 @@ public class FireStoreApi {
         return chaps;
     }
 
-    public static List<String> getUrlImage(String path, TruyenTranhAdapter adapter,String name){
+    public static List<String> getUrlImageComic(String path, TruyenTranhAdapter adapter,String name){
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReferenceFromUrl(path); // path thư mục của bạn
         List<Task<Uri>> tasks = new ArrayList<>();
@@ -135,4 +139,33 @@ public class FireStoreApi {
         });
         return urls;
     }
+
+    public static List<String> getUrlImageStory(String path, TruyenChuAdapter adapter,String name){
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageRef = storage.getReferenceFromUrl(path); // path thư mục của bạn
+        List<Task<Uri>> tasks = new ArrayList<>();
+        List<String> urls = new ArrayList<>();
+        // Lấy danh sách các file trong thư mục
+        Task<ListResult> listTask = storageRef.listAll();
+        listTask.addOnSuccessListener(listResult -> {
+            // Lấy tất cả các URL ảnh
+            for (StorageReference item : listResult.getItems()) {
+                Task<Uri> uriTask = item.getDownloadUrl();
+                tasks.add(uriTask);
+            }
+
+            // Đợi tất cả các nhiệm vụ hoàn thành
+            Tasks.whenAllComplete(tasks).addOnSuccessListener(result -> {
+                for (Task<Uri> task : tasks) {
+                    if (task.isSuccessful()) {
+                        urls.add(task.getResult().toString());
+                    }
+                }
+                adapter.updateUrlStory(urls,name);
+                Log.d("Demo",""+urls);
+            });
+        });
+        return urls;
+    }
+
 }

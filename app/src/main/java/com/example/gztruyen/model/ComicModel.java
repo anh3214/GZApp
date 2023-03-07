@@ -15,6 +15,9 @@ public class ComicModel {
         this.createTime = createTime;
         this.updateTime = updateTime;
     }
+    public ComicModel(){
+
+    }
 
     public List<String> getAvatar() {
         return Avatar;
