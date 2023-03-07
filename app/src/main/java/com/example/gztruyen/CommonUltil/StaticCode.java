@@ -8,6 +8,7 @@ public class StaticCode {
         return instance;
     }
     private final String CHAPTER_KEY = "chapter";
+    public static String COMIC = "TruyenTranh";
 
     public String getCHAPTER_KEY() {
         return CHAPTER_KEY;
