@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,7 +15,7 @@ import com.example.gztruyen.CommonUltil.FakeData;
 import com.example.gztruyen.CommonUltil.StaticCode;
 import com.example.gztruyen.R;
 import com.example.gztruyen.adapters.ReadingComicAdapter;
-import com.example.gztruyen.model.PageComic;
+import com.example.gztruyen.api.FireStoreApi;
 
 import java.util.List;
 
@@ -24,8 +23,8 @@ public class FrmComicReading extends Fragment {
 
     private static FrmComicReading frm;
 
-    public static FrmComicReading getInstance(){
-        if(frm == null)
+    public static FrmComicReading getInstance() {
+        if (frm == null)
             frm = new FrmComicReading();
         return frm;
     }
@@ -34,6 +33,10 @@ public class FrmComicReading extends Fragment {
     private Bundle bundle;
     private String chap;
     private Integer mChap;
+    private String nameComic;
+    private String chapterComic;
+
+    private static final String BASE_URL = "gs://appproject-61e7e.appspot.com/TruyenTranh/";
 
     public FrmComicReading() {
 
@@ -53,14 +56,19 @@ public class FrmComicReading extends Fragment {
         bindingView(view);
         bindingAction(view);
 
-        List<PageComic> list = mChap % 2 == 0 ?
-                FakeData.getInstance().fakeListPageComic() :
-                FakeData.getInstance().fakeListNextPageComic();
+        List<String> list = FakeData.getInstance().fakeListPageComic();
 
         ReadingComicAdapter adapter = new ReadingComicAdapter(list);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(view.getContext());
         rcvComicPage.setAdapter(adapter);
         rcvComicPage.setLayoutManager(layoutManager);
+        FireStoreApi.getUrlImage(BASE_URL +
+                        "TaKhongPhaiconCungCuaVanKhi" +
+                        "/" +
+                        "Chap_1",
+                adapter,
+                ""
+        );
     }
 
     private void bindingAction(View view) {

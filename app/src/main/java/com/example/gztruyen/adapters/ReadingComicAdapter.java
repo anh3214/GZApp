@@ -9,15 +9,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gztruyen.R;
 import com.example.gztruyen.ViewHolder.ReadingComicViewHolder;
-import com.example.gztruyen.model.PageComic;
 
 import java.util.List;
 
 public class ReadingComicAdapter extends RecyclerView.Adapter<ReadingComicViewHolder>{
 
-    private List<PageComic> listItem;
+    private List<String> listItem;
 
-    public ReadingComicAdapter(List<PageComic> listItem) {
+    public ReadingComicAdapter(List<String> listItem) {
         this.listItem = listItem;
     }
 
@@ -31,12 +30,17 @@ public class ReadingComicAdapter extends RecyclerView.Adapter<ReadingComicViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ReadingComicViewHolder holder, int position) {
-        PageComic pageComic = listItem.get(position);
+        String pageComic = listItem.get(position);
         holder.setDataPage(pageComic);
     }
 
     @Override
     public int getItemCount() {
         return listItem.size();
+    }
+
+    public void updateAdapter(List<String> list){
+        this.listItem = list;
+        notifyDataSetChanged();
     }
 }

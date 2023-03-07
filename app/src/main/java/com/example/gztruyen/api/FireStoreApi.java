@@ -5,13 +5,16 @@ import android.util.Log;
 import android.widget.Adapter;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gztruyen.adapters.ApiAdapter;
+import com.example.gztruyen.adapters.ReadingComicAdapter;
 import com.example.gztruyen.adapters.TruyenChuAdapter;
 import com.example.gztruyen.adapters.TruyenTranhAdapter;
 import com.example.gztruyen.model.Chap;
 import com.example.gztruyen.model.ComicModel;
 import com.example.gztruyen.model.QueryResponse;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.storage.FirebaseStorage;
@@ -28,7 +31,7 @@ import retrofit2.Response;
 
 public class FireStoreApi {
 
-    public static List<ComicModel> getAllCommic(TruyenTranhAdapter adapter){
+    public static List<ComicModel> getAllCommic(TruyenTranhAdapter adapter) {
         List<ComicModel> comicModelss = new ArrayList<>();
         List<String> url = new ArrayList<>();
         ApiAdapter.getInstance().basicIformationComic(new Callback<QueryResponse<ComicModel>>() {
@@ -38,26 +41,27 @@ public class FireStoreApi {
                     QueryResponse<ComicModel> queryResponse = response.body();
                     // Xử lý kết quả trả về ở đây
                     comicModelss.addAll(queryResponse.getDocuments());
-                    Log.d("Data",""+comicModelss.size());
-                    if(comicModelss.size() > 0){
+                    Log.d("Data", "" + comicModelss.size());
+                    if (comicModelss.size() > 0) {
                         adapter.updateData(comicModelss);
-                        for (ComicModel comic: comicModelss) {
-                            getUrlImage(comic.getFields().getImageShow().getReferenceValue(), adapter,comic.getName());
+                        for (ComicModel comic : comicModelss) {
+                            getUrlImage(comic.getFields().getImageShow().getReferenceValue(), adapter, comic.getName());
                         }
                     }
                 } else {
-                    Log.d("Error","Get data falseSSE");
+                    Log.d("Error", "Get data falseSSE");
                 }
             }
 
             @Override
             public void onFailure(Call<QueryResponse<ComicModel>> call, Throwable t) {
-                Log.d("Error","Get data false: " + t);
+                Log.d("Error", "Get data false: " + t);
             }
-        },"TruyenTranh");
+        }, "TruyenTranh");
         return comicModelss;
     }
-    public static List<ComicModel> getAllStory(TruyenChuAdapter adapter){
+
+    public static List<ComicModel> getAllStory(TruyenChuAdapter adapter) {
         List<ComicModel> storyModelss = new ArrayList<>();
         ApiAdapter.getInstance().basicIformationComic(new Callback<QueryResponse<ComicModel>>() {
             @Override
@@ -66,23 +70,24 @@ public class FireStoreApi {
                     QueryResponse<ComicModel> queryResponse = response.body();
                     // Xử lý kết quả trả về ở đây
                     storyModelss.addAll(queryResponse.getDocuments());
-                    Log.d("Data",""+storyModelss.size());
-                    if(storyModelss.size() > 0){
+                    Log.d("Data", "" + storyModelss.size());
+                    if (storyModelss.size() > 0) {
                         adapter.updateData(storyModelss);
                     }
                 } else {
-                    Log.d("Error","Get data falseSSE");
+                    Log.d("Error", "Get data falseSSE");
                 }
             }
 
             @Override
             public void onFailure(Call<QueryResponse<ComicModel>> call, Throwable t) {
-                Log.d("Error","Get data false: " + t);
+                Log.d("Error", "Get data false: " + t);
             }
-        },"TruyenChu");
+        }, "TruyenChu");
         return storyModelss;
     }
-    public static List<Chap> getAllChap(String type, String name){
+
+    public static List<Chap> getAllChap(String type, String name) {
 
         List<Chap> chaps = new ArrayList<>();
         ApiAdapter.getInstance().getAllChap(new Callback<QueryResponse<Chap>>() {
@@ -95,20 +100,21 @@ public class FireStoreApi {
 //                    Log.d("Status",""+response.code());
 //                    Log.d("Body",""+response.body().getDocuments());
 //                    Log.d("Test",""+queryResponse.getDocuments());
-                    Log.d("Data",""+chaps.size());
+                    Log.d("Data", "" + chaps.size());
                 } else {
-                    Log.d("Error","Get data falseSSE");
+                    Log.d("Error", "Get data falseSSE");
                 }
             }
+
             @Override
             public void onFailure(Call<QueryResponse<Chap>> call, Throwable t) {
-                Log.d("Error","Get data false: " + t);
+                Log.d("Error", "Get data false: " + t);
             }
-        },"TruyenTranh","Naruto");
+        }, "TruyenTranh", "Naruto");
         return chaps;
     }
 
-    public static List<String> getUrlImage(String path, TruyenTranhAdapter adapter,String name){
+    public static List<String> getUrlImage(String path, RecyclerView.Adapter adapter, String name) {
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReferenceFromUrl(path); // path thư mục của bạn
         List<Task<Uri>> tasks = new ArrayList<>();
@@ -129,8 +135,14 @@ public class FireStoreApi {
                         urls.add(task.getResult().toString());
                     }
                 }
-                adapter.updateUrl(urls,name);
-                Log.d("Demo",""+urls);
+//                adapter.updateUrl(urls,name);
+                try {
+                    ReadingComicAdapter readAdap = adapter instanceof ReadingComicAdapter ? ((ReadingComicAdapter) adapter) : null;
+                    readAdap.updateAdapter(urls);
+                }catch (Exception e){
+                    //
+                }
+                Log.d("Demo", "" + urls);
             });
         });
         return urls;

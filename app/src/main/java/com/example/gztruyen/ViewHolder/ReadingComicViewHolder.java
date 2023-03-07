@@ -8,7 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gztruyen.R;
-import com.example.gztruyen.model.PageComic;
 import com.squareup.picasso.Picasso;
 
 public class ReadingComicViewHolder extends RecyclerView.ViewHolder {
@@ -29,9 +28,9 @@ public class ReadingComicViewHolder extends RecyclerView.ViewHolder {
         imgPageComic = itemView.findViewById(R.id.imgPageComic);
     }
 
-    public void setDataPage(PageComic pageComic) {
+    public void setDataPage(String pageComic) {
         Picasso.get()
-                .load(pageComic.getUrlImg())
+                .load(pageComic)
                 .placeholder(R.drawable.img_loading_img)
                 .error(R.drawable.img_err_img)
                 .into(imgPageComic);
