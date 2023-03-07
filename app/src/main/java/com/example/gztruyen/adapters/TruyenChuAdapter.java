@@ -17,10 +17,18 @@ import java.util.List;
 
 
 public class TruyenChuAdapter extends RecyclerView.Adapter<TruyenChuViewHolder>{
-    private final List<ComicModel> mList;
+    private List<ComicModel> mList;
 
     public TruyenChuAdapter(List<ComicModel> mList) {
         this.mList = mList;
+    }
+
+    public TruyenChuAdapter() {
+    }
+
+    public void updateData(List<ComicModel> data) {
+        this.mList = data;
+        notifyDataSetChanged();
     }
     @NonNull
     @Override
@@ -37,7 +45,7 @@ public class TruyenChuAdapter extends RecyclerView.Adapter<TruyenChuViewHolder>{
         }
 
         //Picasso.get().load(comicModel.getImage()).into( holder.imageView);
-        holder.titleView.setText(comicModel.getName());
+        holder.titleView.setText(comicModel.getFields().getTitle().getStringValue());
     }
 
     @Override

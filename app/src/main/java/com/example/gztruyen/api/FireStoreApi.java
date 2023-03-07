@@ -7,6 +7,7 @@ import android.widget.Adapter;
 import androidx.annotation.NonNull;
 
 import com.example.gztruyen.adapters.ApiAdapter;
+import com.example.gztruyen.adapters.TruyenChuAdapter;
 import com.example.gztruyen.adapters.TruyenTranhAdapter;
 import com.example.gztruyen.model.Chap;
 import com.example.gztruyen.model.ComicModel;
@@ -48,6 +49,7 @@ public class FireStoreApi {
                     Log.d("Error","Get data falseSSE");
                 }
             }
+
             @Override
             public void onFailure(Call<QueryResponse<ComicModel>> call, Throwable t) {
                 Log.d("Error","Get data false: " + t);
@@ -55,7 +57,31 @@ public class FireStoreApi {
         },"TruyenTranh");
         return comicModelss;
     }
+    public static List<ComicModel> getAllStory(TruyenChuAdapter adapter){
+        List<ComicModel> storyModelss = new ArrayList<>();
+        ApiAdapter.getInstance().basicIformationComic(new Callback<QueryResponse<ComicModel>>() {
+            @Override
+            public void onResponse(@NonNull Call<QueryResponse<ComicModel>> call, @NonNull Response<QueryResponse<ComicModel>> response) {
+                if (response.isSuccessful()) {
+                    QueryResponse<ComicModel> queryResponse = response.body();
+                    // Xử lý kết quả trả về ở đây
+                    storyModelss.addAll(queryResponse.getDocuments());
+                    Log.d("Data",""+storyModelss.size());
+                    if(storyModelss.size() > 0){
+                        adapter.updateData(storyModelss);
+                    }
+                } else {
+                    Log.d("Error","Get data falseSSE");
+                }
+            }
 
+            @Override
+            public void onFailure(Call<QueryResponse<ComicModel>> call, Throwable t) {
+                Log.d("Error","Get data false: " + t);
+            }
+        },"TruyenChu");
+        return storyModelss;
+    }
     public static List<Chap> getAllChap(String type, String name){
 
         List<Chap> chaps = new ArrayList<>();
