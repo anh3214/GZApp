@@ -4,9 +4,11 @@ import android.net.Uri;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gztruyen.adapters.ApiAdapter;
 import com.example.gztruyen.adapters.ChaptersAdapter;
+import com.example.gztruyen.adapters.ReadingComicAdapter;
 import com.example.gztruyen.adapters.TruyenChuAdapter;
 import com.example.gztruyen.adapters.TruyenTranhAdapter;
 import com.example.gztruyen.model.ComicModel;
@@ -111,7 +113,7 @@ public class FireStoreApi {
         return chaps;
     }
 
-    public static List<String> getUrlImage(String path, TruyenTranhAdapter adapter,String name){
+    public static List<String> getUrlImage(String path, RecyclerView.Adapter adapter, String name){
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReferenceFromUrl(path); // path thư mục của bạn
         List<Task<Uri>> tasks = new ArrayList<>();
@@ -132,7 +134,14 @@ public class FireStoreApi {
                         urls.add(task.getResult().toString());
                     }
                 }
-                adapter.updateUrl(urls,name);
+                try {
+                    ReadingComicAdapter adapter1 = adapter instanceof ReadingComicAdapter ? ((ReadingComicAdapter) adapter) : null;
+                    adapter1.updateAdapter(urls);
+                }catch (Exception ex){
+                    TruyenTranhAdapter adapter2 = adapter instanceof TruyenTranhAdapter ? ((TruyenTranhAdapter) adapter) : null;
+                    adapter2.updateUrl(urls,name);
+                }
+
                 Log.d("Demo",""+urls);
             });
         });
