@@ -13,7 +13,7 @@
         android:title="@string/truyen_tranh"/>
 
     <item
-        android:id="@+id/me"
+        android:id="@+id/navigation_user_detail"
         android:title="Me"
         android:icon="@drawable/me"/>
 

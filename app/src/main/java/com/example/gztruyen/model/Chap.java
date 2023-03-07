@@ -4,7 +4,6 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class Chap {
-    @SerializedName("documents")
     private List<Document> documents;
 
     public List<Document> getDocuments() {
@@ -15,7 +14,7 @@ public class Chap {
         this.documents = documents;
     }
 
-    static class Document {
+    public static class Document {
         @SerializedName("name")
         private String name;
 
