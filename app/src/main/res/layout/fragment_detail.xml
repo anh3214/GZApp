@@ -17,17 +17,18 @@
             android:layout_height="match_parent">
             <GridLayout
                 android:id="@+id/gridLayout"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:columnCount="3"
                 android:orientation="horizontal"
                 android:rowCount="1"
+                android:layout_gravity="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.cardview.widget.CardView
-                    android:layout_width="130dp"
+                    android:layout_width="120dp"
                     android:layout_height="100dp"
                     android:layout_column="0">
 
@@ -48,7 +49,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
-                    android:layout_width="130dp"
+                    android:layout_width="120dp"
                     android:layout_height="100dp"
                     android:layout_column="1">
 
@@ -69,7 +70,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
-                    android:layout_width="130dp"
+                    android:layout_width="120dp"
                     android:layout_height="100dp"
                     android:layout_column="2">
 
@@ -107,7 +108,7 @@
                                         android:id="@+id/descriptionTitle"
                                         android:layout_width="0dp"
                                         android:layout_height="wrap_content"
-                                        android:text="Description:"
+                                        android:text="Mô tả:"
                                         android:textStyle="bold"
                                         android:textSize="20dp"
                                         app:layout_constraintStart_toStartOf="parent"
@@ -138,13 +139,14 @@
                     android:id="@+id/textDexuat"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:text="De xuat lien quan" />
+                    android:text="Đề xuất liên quan"
+                    android:textSize="20dp"/>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/item_truyen"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="40dp"
                     android:layout_marginBottom="50dp"/>
             </androidx.cardview.widget.CardView>
 

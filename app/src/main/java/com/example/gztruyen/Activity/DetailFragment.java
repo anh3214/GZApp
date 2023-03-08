@@ -11,9 +11,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.gztruyen.CommonUltil.FakeData;
 import com.example.gztruyen.R;
 import com.example.gztruyen.adapters.ChaptersAdapter;
 import com.example.gztruyen.adapters.TruyenTranhAdapter;
+import com.example.gztruyen.api.FireStoreApi;
 import com.example.gztruyen.model.ChapterModel;
 import com.example.gztruyen.model.ComicModel;
 
@@ -37,6 +39,7 @@ public class DetailFragment extends Fragment {
     private String mParam2;
 
     private RecyclerView item_truyen;
+    private TruyenTranhAdapter adapter;
     public DetailFragment() {
         // Required empty public constructor
     }
@@ -77,35 +80,17 @@ public class DetailFragment extends Fragment {
         bindingView(rootView);
         bindingAction(rootView);
 
-        TruyenTranhAdapter adapter = new TruyenTranhAdapter(getTruyen());
+         adapter = new TruyenTranhAdapter();
+        adapter.updateData(getTruyen(adapter));
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this.getContext(),3);
         item_truyen.setAdapter(adapter);
         item_truyen.setLayoutManager(gridLayoutManager);
 
         return rootView;
     }
-    private List<ComicModel> getTruyen() {
-//        List<ComicModel> models = new ArrayList<>();
-//        ComicModel modelTruyen = new ComicModel("ẤDSD","Tiên Tôn Hổ","ádadsasd","https://bit.ly/2YoJ77H");
-//        ComicModel modelTruyen1 = new ComicModel("ẤDSD","Voi Tu Tiên","ádadsasd","https://bit.ly/2BteuF2");
-//        ComicModel modelTruyen2 = new ComicModel("ẤDSD","Pháp Sư bí Ẩn","ádadsasd","https://bit.ly/3fLJf72");
-//        ComicModel modelTruyen3 = new ComicModel("ẤDSD","Bola Bolo","ádadsasd","https://st.nettruyenup.com/data/comics/173/chuyen-sinh-thanh-kiem.jpg");
-//        ComicModel modelTruyen4 = new ComicModel("ẤDSD","Bola Bolo","ádadsasd","https://st.nettruyenup.com/data/comics/138/bong-mot-ngay-xuyen-thanh-hoang-hau-ac-d-7720.jpg");
-//        ComicModel modelTruyen5 = new ComicModel("ẤDSD","Bola Bolo","ádadsasd","https://st.nettruyenup.com/data/comics/183/chuyen-khong-the.jpg");
-//        ComicModel modelTruyen6 = new ComicModel("ẤDSD","Bola Bolo","ádadsasd","https://st.nettruyenup.com/data/comics/54/1001-cach-chinh-phuc-chong-yeu.jpg");
-//        ComicModel modelTruyen7 = new ComicModel("ẤDSD","Bola Bolo","ádadsasd","https://st.nettruyenup.com/data/comics/72/tu-luc-bat-dau-lien-vo-dich.jpg");
-//        ComicModel modelTruyen8 = new ComicModel("ẤDSD","Bola Bolo","ádadsasd","https://st.nettruyenup.com/data/comics/177/quyet-chien.jpg");
-//
-//        models.add(modelTruyen);
-//        models.add(modelTruyen1);
-//        models.add(modelTruyen2);
-//        models.add(modelTruyen3);
-//        models.add(modelTruyen4);
-//        models.add(modelTruyen5);
-//        models.add(modelTruyen6);
-//        models.add(modelTruyen7);
-//        models.add(modelTruyen8);
-        return null;
+    private List<ComicModel> getTruyen(TruyenTranhAdapter adapter) {
+        List<ComicModel> list = FireStoreApi.getAllCommic(adapter);
+        return list;
     }
     private void bindingView(View view){
         item_truyen = view.findViewById(R.id.item_truyen);
