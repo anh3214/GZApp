@@ -70,6 +70,9 @@ public class FireStoreApi {
                     Log.d("Data",""+storyModelss.size());
                     if(storyModelss.size() > 0){
                         adapter.updateData(storyModelss);
+                        for (ComicModel comic: storyModelss) {
+                            getUrlImageStory(comic.getFields().getImageShow().getReferenceValue(), adapter,comic.getName());
+                        }
                     }
                 } else {
                     Log.d("Error","Get data falseSSE");
@@ -148,6 +151,40 @@ public class FireStoreApi {
         return urls;
     }
 
+    public static List<String> getUrlImageStory(String path, RecyclerView.Adapter adapter, String name){
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageRef = storage.getReferenceFromUrl(path); // path thư mục của bạn
+        List<Task<Uri>> tasks = new ArrayList<>();
+        List<String> urls = new ArrayList<>();
+        // Lấy danh sách các file trong thư mục
+        Task<ListResult> listTask = storageRef.listAll();
+        listTask.addOnSuccessListener(listResult -> {
+            // Lấy tất cả các URL ảnh
+            for (StorageReference item : listResult.getItems()) {
+                Task<Uri> uriTask = item.getDownloadUrl();
+                tasks.add(uriTask);
+            }
+
+            // Đợi tất cả các nhiệm vụ hoàn thành
+            Tasks.whenAllComplete(tasks).addOnSuccessListener(result -> {
+                for (Task<Uri> task : tasks) {
+                    if (task.isSuccessful()) {
+                        urls.add(task.getResult().toString());
+                    }
+                }
+                try {
+                    ReadingComicAdapter adapter1 = adapter instanceof ReadingComicAdapter ? ((ReadingComicAdapter) adapter) : null;
+                    adapter1.updateAdapter(urls);
+                }catch (Exception ex){
+                    TruyenChuAdapter adapter2 = adapter instanceof TruyenChuAdapter ? ((TruyenChuAdapter) adapter) : null;
+                    adapter2.updateUrlStory(urls,name);
+                }
+
+                Log.d("Demo",""+urls);
+            });
+        });
+        return urls;
+    }
     public static List<String> getChapter(String path, TruyenTranhAdapter adapter,String name){
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReferenceFromUrl(path); // path thư mục của bạn

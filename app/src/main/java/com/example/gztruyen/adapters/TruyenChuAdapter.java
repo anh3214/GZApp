@@ -1,5 +1,6 @@
 package com.example.gztruyen.adapters;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import com.example.gztruyen.R;
 import com.example.gztruyen.ViewHolder.TruyenChuViewHolder;
 import com.example.gztruyen.ViewHolder.TruyenTranhViewHolder;
 import com.example.gztruyen.model.ComicModel;
+import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -30,6 +32,15 @@ public class TruyenChuAdapter extends RecyclerView.Adapter<TruyenChuViewHolder>{
         this.mList = data;
         notifyDataSetChanged();
     }
+    public void updateUrlStory(List<String> url,String name){
+        for (ComicModel comic: this.mList) {
+            if(comic.getName().equals(name)){
+                comic.setAvatar(url);
+            }
+        }
+        notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
     public TruyenChuViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -43,7 +54,16 @@ public class TruyenChuAdapter extends RecyclerView.Adapter<TruyenChuViewHolder>{
         if(comicModel == null){
             return;
         }
-
+        if(comicModel.getAvatar() != null){
+            for (String url : comicModel.getAvatar()) {
+                Picasso.get()
+                        .load(url)
+                        .fit()
+                        .memoryPolicy(MemoryPolicy.NO_CACHE,MemoryPolicy.NO_STORE)
+                        .centerCrop()
+                        .into(holder.imageView);
+            }
+        }
         //Picasso.get().load(comicModel.getImage()).into( holder.imageView);
         holder.titleView.setText(comicModel.getFields().getTitle().getStringValue());
     }

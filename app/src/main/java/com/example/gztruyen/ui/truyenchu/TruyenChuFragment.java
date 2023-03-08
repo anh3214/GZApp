@@ -63,6 +63,7 @@ public class TruyenChuFragment extends Fragment {
         gridLayoutManager = new GridLayoutManager(context,3);
         bindingView(root);
         bindingAction();
+
         return root;
     }
 
