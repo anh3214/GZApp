@@ -10,9 +10,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gztruyen.Activity.MangaDetailActivity;
+import com.example.gztruyen.CommonUltil.StaticCode;
 import com.example.gztruyen.Home;
 import com.example.gztruyen.R;
 import com.example.gztruyen.ui.truyentranh.TruyenTranhFragment;
@@ -37,8 +39,8 @@ public class TruyenChuViewHolder extends RecyclerView.ViewHolder{
     }
     private void onImgClick(View view) {
         Intent i = new Intent(context, MangaDetailActivity.class);
+        i.putExtra(StaticCode.getInstance().TYPE_KEY, StaticCode.getInstance().STORY);
         context.startActivity(i);
-        Toast.makeText(context, "done", Toast.LENGTH_SHORT).show();
     }
 
     public TruyenChuViewHolder(@NonNull View itemView, Context context) {

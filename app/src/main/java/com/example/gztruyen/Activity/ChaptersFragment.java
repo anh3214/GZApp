@@ -7,9 +7,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.gztruyen.R;
 import com.example.gztruyen.adapters.ChaptersAdapter;
@@ -23,26 +25,34 @@ import java.util.List;
 public class ChaptersFragment extends Fragment {
 
     private RecyclerView rcvChapters;
-
     private Context context;
 
 
-    private void bindingView(View view){
+    private void bindingView(View view) {
         rcvChapters = view.findViewById(R.id.rcvChapters);
+        context = view.getContext();
     }
 
-    private void bindingAction(View view){
+    private void bindingAction(View view) {
 
     }
 
     public ChaptersFragment() {
         // Required empty public constructor
     }
+    private static ChaptersFragment instance;
+    public static ChaptersFragment getInstance(){
+        if(instance == null)
+            instance = new ChaptersFragment();
+        return instance;
+    }
 
-
+    String type;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bundle b = instance.getArguments();
+        type = b.getString("type");
     }
 
     @Override
@@ -62,8 +72,10 @@ public class ChaptersFragment extends Fragment {
         return rootView;
     }
 
-    private List<DocumentChap> getAllChapter(ChaptersAdapter adapter){
-        List<DocumentChap> allChap = FireStoreApi.getAllChap(adapter);
+    private List<DocumentChap> getAllChapter(ChaptersAdapter adapter) {
+        Log.d("thanhdt", type);
+        List<DocumentChap> allChap = FireStoreApi.getAllChap(adapter, type, "Naruto");
+        Log.d("size", allChap.size() + "");
         return allChap;
     }
 }

@@ -3,6 +3,7 @@ package com.example.gztruyen.ViewHolder;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -11,15 +12,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.gztruyen.Activity.ChaptersFragment;
 import com.example.gztruyen.Activity.MangaDetailActivity;
+import com.example.gztruyen.CommonUltil.StaticCode;
 import com.example.gztruyen.R;
 
 public class TruyenTranhViewHolder extends RecyclerView.ViewHolder {
     public ImageView imageView;
     public TextView titleView;
     private Context context;
+
     
     private void bindindView() {
         imageView = itemView.findViewById(R.id.imageView);
@@ -38,6 +43,7 @@ public class TruyenTranhViewHolder extends RecyclerView.ViewHolder {
 
     private void onImgClick(View view) {
         Intent i = new Intent(context, MangaDetailActivity.class);
+        i.putExtra(StaticCode.getInstance().TYPE_KEY, StaticCode.getInstance().COMIC);
         context.startActivity(i);
         Toast.makeText(context, "done", Toast.LENGTH_SHORT).show();
     }

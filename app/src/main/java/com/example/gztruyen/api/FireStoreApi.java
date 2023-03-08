@@ -86,7 +86,7 @@ public class FireStoreApi {
         },"TruyenChu");
         return storyModelss;
     }
-    public static List<DocumentChap> getAllChap(ChaptersAdapter adapter){
+    public static List<DocumentChap> getAllChap(ChaptersAdapter adapter,String type, String name){
 
         List<DocumentChap> chaps = new ArrayList<>();
         ApiAdapter.getInstance().getAllChap(new Callback<QueryResponse<DocumentChap>>() {
@@ -112,7 +112,7 @@ public class FireStoreApi {
             public void onFailure(Call<QueryResponse<DocumentChap>> call, Throwable t) {
                 Log.d("Error","Get data false: " + t);
             }
-        },"TruyenTranh","Naruto");
+        },type,name);
         return chaps;
     }
 
