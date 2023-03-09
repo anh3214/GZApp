@@ -96,10 +96,10 @@ public class FireStoreApi {
                     QueryResponse<DocumentChap> queryResponse = response.body();
                     // Xử lý kết quả trả về ở đây
                     chaps.addAll(queryResponse.getDocuments());
-                    Log.d("Status",""+response.code());
-                    Log.d("Body",""+response.body().getDocuments());
-                    Log.d("Test",""+queryResponse.getDocuments().size());
-                    Log.d("DataChapTer",""+chaps.get(1).getFields().getTitle());
+//                    Log.d("Status",""+response.code());
+//                    Log.d("Body",""+response.body().getDocuments());
+//                    Log.d("Test",""+queryResponse.getDocuments().size());
+//                    Log.d("DataChapTer",""+chaps.get(1).getFields().getTitle());
 
                     if(chaps.size() > 0){
                         adapter.setChapterList(chaps);

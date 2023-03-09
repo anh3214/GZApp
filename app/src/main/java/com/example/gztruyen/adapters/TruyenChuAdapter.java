@@ -17,9 +17,9 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-
 public class TruyenChuAdapter extends RecyclerView.Adapter<TruyenChuViewHolder>{
     private List<ComicModel> mList;
+    private TruyenChuViewHolder.OnItemClickListener onItemClickListener;
 
     public TruyenChuAdapter(List<ComicModel> mList) {
         this.mList = mList;
@@ -28,9 +28,15 @@ public class TruyenChuAdapter extends RecyclerView.Adapter<TruyenChuViewHolder>{
     public TruyenChuAdapter() {
     }
 
+    public TruyenChuAdapter(List<ComicModel> mList, TruyenChuViewHolder.OnItemClickListener onItemClickListener){
+        this.mList = mList;
+        this.onItemClickListener = onItemClickListener;
+    }
     public void updateData(List<ComicModel> data) {
         this.mList = data;
-        notifyDataSetChanged();
+        if(data != null){
+            notifyDataSetChanged();
+        }
     }
     public void updateUrlStory(List<String> url,String name){
         for (ComicModel comic: this.mList) {
@@ -54,18 +60,8 @@ public class TruyenChuAdapter extends RecyclerView.Adapter<TruyenChuViewHolder>{
         if(comicModel == null){
             return;
         }
-        if(comicModel.getAvatar() != null){
-            for (String url : comicModel.getAvatar()) {
-                Picasso.get()
-                        .load(url)
-                        .fit()
-                        .memoryPolicy(MemoryPolicy.NO_CACHE,MemoryPolicy.NO_STORE)
-                        .centerCrop()
-                        .into(holder.imageView);
-            }
-        }
-        //Picasso.get().load(comicModel.getImage()).into( holder.imageView);
-        holder.titleView.setText(comicModel.getFields().getTitle().getStringValue());
+
+        holder.setData(mList.get(position));
     }
 
     @Override

@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.gztruyen.CommonUltil.Common;
 import com.example.gztruyen.R;
 import com.example.gztruyen.adapters.ChaptersAdapter;
 import com.example.gztruyen.api.FireStoreApi;
@@ -48,13 +49,20 @@ public class ChaptersFragment extends Fragment {
     }
 
     String type;
+    String nameFiel;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle b = instance.getArguments();
         type = b.getString("type");
+        nameFiel = b.getString("name");
     }
 
+    public String cutURLName(String name){
+        int index = name.lastIndexOf("/") + 1; // tìm vị trí của dấu "/" cuối cùng
+        String result = name.substring(index); // lấy phần tử từ vị trí đó đến hết chuỗi
+        return result;
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -73,8 +81,10 @@ public class ChaptersFragment extends Fragment {
     }
 
     private List<DocumentChap> getAllChapter(ChaptersAdapter adapter) {
+
+        String name = cutURLName(nameFiel);
         Log.d("thanhdt", type);
-        List<DocumentChap> allChap = FireStoreApi.getAllChap(adapter, type, "Naruto");
+        List<DocumentChap> allChap = FireStoreApi.getAllChap(adapter, type, name);
         Log.d("size", allChap.size() + "");
         return allChap;
     }
