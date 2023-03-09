@@ -91,6 +91,7 @@ public class DetailFragment extends Fragment {
     private List<ComicModel> getTruyen(TruyenTranhAdapter adapter) {
         List<ComicModel> list = FireStoreApi.getAllCommic(adapter);
         return list;
+
     }
     private void bindingView(View view){
         item_truyen = view.findViewById(R.id.item_truyen);

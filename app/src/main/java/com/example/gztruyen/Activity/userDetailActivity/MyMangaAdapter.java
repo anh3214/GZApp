@@ -1,19 +1,16 @@
-package com.example.gztruyen.adapters;
-
-import android.support.customtabs.trusted.ITrustedWebActivityService;
+package com.example.gztruyen.Activity.userDetailActivity;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
-import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.gztruyen.Activity.ChaptersFragment;
 import com.example.gztruyen.Activity.DetailFragment;
 
-public class ViewMangaDetailAdapter extends FragmentStatePagerAdapter {
-    public ViewMangaDetailAdapter(@NonNull FragmentManager fm, int behavior) {
+public class MyMangaAdapter extends FragmentStatePagerAdapter {
+    public MyMangaAdapter(@NonNull FragmentManager fm, int behavior) {
         super(fm, behavior);
     }
 
@@ -22,12 +19,12 @@ public class ViewMangaDetailAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position){
             case 0:
-                return new DetailFragment();
+                return new HistoryFragment();
             case 1:
-                return new ChaptersFragment();
+                return new FollowFragment();
 
             default:
-                return new DetailFragment();
+                return new HistoryFragment();
         }
     }
 
@@ -37,15 +34,14 @@ public class ViewMangaDetailAdapter extends FragmentStatePagerAdapter {
         String title = "";
         switch (position){
             case 0:
-                title = "thông tin";
+                title = "Lịch sử";
                 break;
             case 1:
-                title = "chapters";
+                title = "Theo dõi";
                 break;
         }
         return title;
     }
-
 
     @Override
     public int getCount() {

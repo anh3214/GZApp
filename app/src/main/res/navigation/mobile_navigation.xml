@@ -16,4 +16,10 @@
         android:name="com.example.gztruyen.ui.truyenchu.TruyenChuFragment"
         android:label="@string/truyen_chu"
         tools:layout="@layout/fragment_truyen_chu" />
+
+    <fragment
+        android:id="@+id/navigation_user_detail"
+        android:name="com.example.gztruyen.ui.userdetail.UserDetailFragment"
+        android:label="@string/toi"
+        tools:layout="@layout/fragment_user_detail" />
 </navigation>

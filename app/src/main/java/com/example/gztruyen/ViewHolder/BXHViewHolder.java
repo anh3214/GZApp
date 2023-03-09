@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.gztruyen.R;
@@ -17,11 +18,13 @@ public class BXHViewHolder extends RecyclerView.ViewHolder implements View.OnCli
     private TextView nameTruyen;
 
     private TextView numberBxh;
+    public ImageView imageViewBXH;
     private Context context;
 
     private void bindingView(View itemView){
         nameTruyen = itemView.findViewById(R.id.nameTruyen);
         numberBxh = itemView.findViewById(R.id.numberBxh);
+        imageViewBXH = itemView.findViewById(R.id.imageView2);
 
     }
 
@@ -37,9 +40,10 @@ public class BXHViewHolder extends RecyclerView.ViewHolder implements View.OnCli
     }
 
     public void setNameTruyen(ComicModel comic){
-        nameTruyen.setText(comic.getName());
+        nameTruyen.setText(comic.getFields().getTitle().getStringValue());
     }
-    public void setNumberBxh(int number){numberBxh.setText(number + "");}
+    public void setNumberBxh(int number){numberBxh.setText(number+1 + "");}
+
     @Override
     public void onClick(View v) {
 

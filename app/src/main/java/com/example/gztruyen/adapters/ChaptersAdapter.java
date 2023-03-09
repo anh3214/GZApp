@@ -1,5 +1,6 @@
 package com.example.gztruyen.adapters;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,16 +10,26 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gztruyen.R;
 import com.example.gztruyen.ViewHolder.ChapterViewHolder;
-import com.example.gztruyen.ViewHolder.RcvViewHolderSearch;
-import com.example.gztruyen.model.ChapterModel;
+import com.example.gztruyen.model.DocumentChap;
 
 import java.util.List;
 
 public class ChaptersAdapter extends RecyclerView.Adapter<ChapterViewHolder>{
-    private List<ChapterModel> chapterList;
+    private List<DocumentChap> chapterList;
 
-    public ChaptersAdapter(List<ChapterModel> chapterList) {
+    public ChaptersAdapter() {
+    }
+
+    public ChaptersAdapter(List<DocumentChap> chapterList) {
         this.chapterList = chapterList;
+    }
+
+    public void setChapterList(List<DocumentChap> chapterList) {
+        Log.d("DataAffter",""+chapterList.size());
+        this.chapterList = chapterList;
+        if(chapterList.size() > 0){
+            notifyDataSetChanged();
+        }
     }
 
     @NonNull
@@ -31,7 +42,12 @@ public class ChaptersAdapter extends RecyclerView.Adapter<ChapterViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull ChapterViewHolder holder, int position) {
-        holder.setChapter(chapterList.get(position));
+        if(chapterList.size() == 0){
+            Log.d("Error","Nullll");
+            return;
+        }else {
+            holder.setChapter(chapterList.get(position));
+        }
     }
 
     @Override

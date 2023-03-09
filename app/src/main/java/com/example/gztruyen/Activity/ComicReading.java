@@ -56,19 +56,13 @@ public class ComicReading extends AppCompatActivity {
 
     private void comeNextChapter(View view) {
         Bundle b = getIntent().getExtras();
-        StaticCode s = new StaticCode();
-        String chap = b.getString(s.CHAPTER_KEY);
+        String chap = b.getString(StaticCode.getInstance().getCHAPTER_KEY());
         int c = Integer.parseInt(chap);
-        b.remove(s.CHAPTER_KEY);
-        b.putString(s.CHAPTER_KEY, (c+1) + "");
-
-        Fragment myFragment = new FrmComicReading();
-        myFragment.setArguments(b);
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.frmComicReading, myFragment)
-                .disallowAddToBackStack()
-                .commitNow();
+        b.putString(StaticCode.getInstance().getCHAPTER_KEY(), (c+1) + "");
+        Intent intent = new Intent(this, ComicReading.class);
+        intent.putExtras(b);
+        startActivity(intent);
+        finish();
     }
 
     private void saveLater(View view) {
@@ -76,6 +70,17 @@ public class ComicReading extends AppCompatActivity {
     }
 
     private void comeBackPreviousChapter(View view) {
-
+        Bundle b = getIntent().getExtras();
+        String chap = b.getString(StaticCode.getInstance().getCHAPTER_KEY());
+        int c = Integer.parseInt(chap);
+        if(c == 1){
+            Toast.makeText(this, "No previous chapter to load", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        b.putString(StaticCode.getInstance().getCHAPTER_KEY(), (c-1) + "");
+        Intent intent = new Intent(this, ComicReading.class);
+        intent.putExtras(b);
+        startActivity(intent);
+        finish();
     }
 }

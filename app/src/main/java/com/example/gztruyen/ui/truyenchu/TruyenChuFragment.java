@@ -24,6 +24,7 @@ import com.example.gztruyen.Activity.SearchActivity;
 import com.example.gztruyen.R;
 import com.example.gztruyen.adapters.TruyenChuAdapter;
 import com.example.gztruyen.adapters.TruyenTranhAdapter;
+import com.example.gztruyen.api.FireStoreApi;
 import com.example.gztruyen.databinding.FragmentTruyenChuBinding;
 import com.example.gztruyen.databinding.FragmentTruyenTranhBinding;
 import com.example.gztruyen.model.ComicModel;
@@ -57,9 +58,12 @@ public class TruyenChuFragment extends Fragment {
         binding = FragmentTruyenChuBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         context = root.getContext();
+        adapter = new TruyenChuAdapter();
+        adapter.updateData(getTruyen(adapter));
         gridLayoutManager = new GridLayoutManager(context,3);
         bindingView(root);
         bindingAction();
+
         return root;
     }
 
@@ -81,7 +85,6 @@ public class TruyenChuFragment extends Fragment {
         imageSlider.setItemClickListener(this::itemClicker);
         item_truyen.setLayoutManager(gridLayoutManager);
         item_truyen.setAdapter(adapter);
-        adapter = new TruyenChuAdapter(getTruyen());
     }
     private void itemClicker(int i) {
         Log.d( "Items","Clicked" + i);
@@ -97,8 +100,9 @@ public class TruyenChuFragment extends Fragment {
         }
         return imageList;
     }
-    private List<ComicModel> getTruyen() {
-        return null;
+    private List<ComicModel> getTruyen(TruyenChuAdapter adapter) {
+        List<ComicModel> list = FireStoreApi.getAllStory(adapter);
+        return list;
     }
     private void btnSearchOnClick(View view) {
 //        Toast.makeText(context, "As u wish", Toast.LENGTH_SHORT).show();

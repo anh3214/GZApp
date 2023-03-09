@@ -16,6 +16,8 @@ import com.example.gztruyen.R;
 import com.example.gztruyen.adapters.BangXepHangAdapter;
 import com.example.gztruyen.adapters.ChaptersAdapter;
 import com.example.gztruyen.adapters.TopTruyenAdapter;
+import com.example.gztruyen.adapters.TruyenTranhAdapter;
+import com.example.gztruyen.api.FireStoreApi;
 import com.example.gztruyen.model.ChapterModel;
 import com.example.gztruyen.model.ComicModel;
 
@@ -26,6 +28,8 @@ public class BangXHFragment extends Fragment {
 
     private RecyclerView rcvBXH;
     private Context context;
+    private List<ComicModel> mList;
+    private TopTruyenAdapter adapterTopTruyen;
 
     private void bindingView(View view){
         rcvBXH = view.findViewById(R.id.rcvBXH);
@@ -47,16 +51,25 @@ public class BangXHFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_bang_xh, container, false);
         bindingView(rootView);
         bindingAction(rootView);
-        FakeData fakeData = new FakeData();
 
+        FakeData fakeData = new FakeData();
         List<ComicModel> comicModels = fakeData.fakeDataComic();
 
-        TopTruyenAdapter adapter = new TopTruyenAdapter(comicModels);
+        //adapterComic  = new TruyenTranhAdapter();
+        //adapterComic.updateData(getTruyen(adapterComic));
+        adapterTopTruyen = new TopTruyenAdapter();
+         adapterTopTruyen.updateData(getTruyen(adapterTopTruyen));
         LinearLayoutManager layoutManager = new LinearLayoutManager(this.getContext());
-        rcvBXH.setAdapter(adapter);
+        rcvBXH.setAdapter(adapterTopTruyen);
         rcvBXH.setLayoutManager(layoutManager);
 
         // Inflate the layout for this fragment
         return rootView;
     }
+
+    private List<ComicModel> getTruyen(TopTruyenAdapter adapter) {
+        List<ComicModel> list = FireStoreApi.getAllCommicBXH(adapter);
+        return list;
+    }
+
 }
