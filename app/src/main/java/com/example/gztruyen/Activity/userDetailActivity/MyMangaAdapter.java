@@ -6,9 +6,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
-import com.example.gztruyen.Activity.ChaptersFragment;
-import com.example.gztruyen.Activity.DetailFragment;
-
 public class MyMangaAdapter extends FragmentStatePagerAdapter {
     public MyMangaAdapter(@NonNull FragmentManager fm, int behavior) {
         super(fm, behavior);

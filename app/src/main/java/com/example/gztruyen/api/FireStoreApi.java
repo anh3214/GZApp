@@ -86,7 +86,7 @@ public class FireStoreApi {
         },"TruyenChu");
         return storyModelss;
     }
-    public static List<DocumentChap> getAllChap(ChaptersAdapter adapter){
+    public static List<DocumentChap> getAllChap(ChaptersAdapter adapter,String type, String name){
 
         List<DocumentChap> chaps = new ArrayList<>();
         ApiAdapter.getInstance().getAllChap(new Callback<QueryResponse<DocumentChap>>() {
@@ -96,10 +96,10 @@ public class FireStoreApi {
                     QueryResponse<DocumentChap> queryResponse = response.body();
                     // Xử lý kết quả trả về ở đây
                     chaps.addAll(queryResponse.getDocuments());
-                    Log.d("Status",""+response.code());
-                    Log.d("Body",""+response.body().getDocuments());
-                    Log.d("Test",""+queryResponse.getDocuments().size());
-                    Log.d("DataChapTer",""+chaps.get(1).getFields().getTitle());
+//                    Log.d("Status",""+response.code());
+//                    Log.d("Body",""+response.body().getDocuments());
+//                    Log.d("Test",""+queryResponse.getDocuments().size());
+//                    Log.d("DataChapTer",""+chaps.get(1).getFields().getTitle());
 
                     if(chaps.size() > 0){
                         adapter.setChapterList(chaps);
@@ -112,7 +112,7 @@ public class FireStoreApi {
             public void onFailure(Call<QueryResponse<DocumentChap>> call, Throwable t) {
                 Log.d("Error","Get data false: " + t);
             }
-        },"TruyenTranh","Naruto");
+        },type,name);
         return chaps;
     }
 

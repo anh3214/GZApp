@@ -4,6 +4,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,6 +21,8 @@ import java.util.List;
 
 public class TruyenTranhAdapter extends RecyclerView.Adapter<TruyenTranhViewHolder> {
     private List<ComicModel> mList;
+    private TruyenTranhViewHolder.OnItemClickListener onItemClickListener;
+
 
     public TruyenTranhAdapter(List<ComicModel> mList) {
         this.mList = mList;
@@ -28,6 +31,10 @@ public class TruyenTranhAdapter extends RecyclerView.Adapter<TruyenTranhViewHold
     public TruyenTranhAdapter() {
     }
 
+    public TruyenTranhAdapter(List<ComicModel> mList, TruyenTranhViewHolder.OnItemClickListener onItemClickListener){
+        this.mList = mList;
+        this.onItemClickListener = onItemClickListener;
+    }
     public void updateData(List<ComicModel> data) {
         this.mList = data;
         if(data != null){
@@ -55,17 +62,9 @@ public class TruyenTranhAdapter extends RecyclerView.Adapter<TruyenTranhViewHold
         if(comicModel == null){
             return;
         }
-        if(comicModel.getAvatar() != null){
-            for (String url : comicModel.getAvatar()) {
-                Picasso.get()
-                        .load(url)
-                        .fit()
-                        .memoryPolicy(MemoryPolicy.NO_CACHE,MemoryPolicy.NO_STORE)
-                        .centerCrop()
-                        .into(holder.imageView);
-            }
-        }
-        holder.titleView.setText(comicModel.getFields().getTitle().getStringValue());
+
+        holder.setData(mList.get(position));
+
     }
 
     @Override
