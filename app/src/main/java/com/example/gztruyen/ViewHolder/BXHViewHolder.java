@@ -44,6 +44,8 @@ public class BXHViewHolder extends RecyclerView.ViewHolder implements View.OnCli
     }
     public void setNumberBxh(int number){numberBxh.setText(number+1 + "");}
 
+
+
     @Override
     public void onClick(View v) {
 

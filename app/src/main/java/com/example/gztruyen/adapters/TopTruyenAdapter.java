@@ -1,5 +1,6 @@
 package com.example.gztruyen.adapters;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gztruyen.R;
 import com.example.gztruyen.ViewHolder.BXHViewHolder;
+import com.example.gztruyen.api.FireStoreApi;
 import com.example.gztruyen.model.ChapterModel;
 import com.example.gztruyen.model.ComicModel;
 import com.squareup.picasso.MemoryPolicy;
@@ -67,10 +69,12 @@ public class TopTruyenAdapter extends RecyclerView.Adapter<BXHViewHolder>{
                         .into(holder.imageViewBXH);
             }
         }
+        Log.d("Url", " "+comicModel.getAvatar());
         holder.setNameTruyen(comicModel);
         holder.setNumberBxh(position);
 
     }
+
 
     @Override
     public long getItemId(int i) {

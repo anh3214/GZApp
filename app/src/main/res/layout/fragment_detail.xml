@@ -115,7 +115,7 @@
                                         app:layout_constraintTop_toTopOf="parent" />
 
                                     <TextView
-                                        android:id="@+id/description"
+                                        android:id="@+id/descriptionContent"
                                         android:layout_width="0dp"
                                         android:layout_height="20dp"
                                         android:text="Description: 1234567890qwertyuioppasdfghjklzxcvbnm"

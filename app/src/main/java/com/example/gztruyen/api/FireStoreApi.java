@@ -6,8 +6,10 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.gztruyen.Activity.DetailFragment;
 import com.example.gztruyen.adapters.ApiAdapter;
 import com.example.gztruyen.adapters.ChaptersAdapter;
+import com.example.gztruyen.adapters.DetailAdapter;
 import com.example.gztruyen.adapters.ReadingComicAdapter;
 import com.example.gztruyen.adapters.TopTruyenAdapter;
 import com.example.gztruyen.adapters.TruyenChuAdapter;
@@ -228,7 +230,8 @@ public class FireStoreApi {
                     if(comicModelss.size() > 0){
                         adapter.updateData(comicModelss);
                         for (ComicModel comic: comicModelss) {
-                            //getUrlImage(comic.getFields().getImageShow().getReferenceValue(), adapter,comic.getName());
+                            getUrlImageTopTruyen(comic.getFields().getImageShow().getReferenceValue(), adapter,comic.getName());
+
                         }
                     }
                 } else {
@@ -243,4 +246,72 @@ public class FireStoreApi {
         },"TruyenTranh");
         return comicModelss;
     }
+
+    public static List<String> getUrlImageTopTruyen(String path, RecyclerView.Adapter adapter, String name){
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageRef = storage.getReferenceFromUrl(path); // path thư mục của bạn
+        List<Task<Uri>> tasks = new ArrayList<>();
+        List<String> urls = new ArrayList<>();
+        // Lấy danh sách các file trong thư mục
+        Task<ListResult> listTask = storageRef.listAll();
+        listTask.addOnSuccessListener(listResult -> {
+            // Lấy tất cả các URL ảnh
+            for (StorageReference item : listResult.getItems()) {
+                Task<Uri> uriTask = item.getDownloadUrl();
+                tasks.add(uriTask);
+            }
+
+            // Đợi tất cả các nhiệm vụ hoàn thành
+            Tasks.whenAllComplete(tasks).addOnSuccessListener(result -> {
+                for (Task<Uri> task : tasks) {
+                    if (task.isSuccessful()) {
+                        urls.add(task.getResult().toString());
+                    }
+                }
+                try {
+                    ReadingComicAdapter adapter1 = adapter instanceof ReadingComicAdapter ? ((ReadingComicAdapter) adapter) : null;
+                    adapter1.updateAdapter(urls);
+                }catch (Exception ex){
+                    TopTruyenAdapter adapter2 = adapter instanceof TopTruyenAdapter ? ((TopTruyenAdapter) adapter) : null;
+                    adapter2.updateUrl(urls,name);
+                }
+
+                Log.d("Demo",""+urls);
+            });
+        });
+        return urls;
+    }
+
+//    public static void getComic(DetailAdapter adapter, String name, String type){
+//        List<ComicModel> comicModelss = new ArrayList<>();
+//        List<String> url = new ArrayList<>();
+//        ComicModel comicModel = new ComicModel();
+//        ApiAdapter.getInstance().basicIformationComic(new Callback<QueryResponse<ComicModel>>() {
+//            @Override
+//            public void onResponse(@NonNull Call<QueryResponse<ComicModel>> call, @NonNull Response<QueryResponse<ComicModel>> response) {
+//                if (response.isSuccessful()) {
+//                    QueryResponse<ComicModel> queryResponse = response.body();
+//                    // Xử lý kết quả trả về ở đây
+//                    comicModelss.addAll(queryResponse.getDocuments());
+//                    Log.d("Data",""+comicModelss.size());
+//                    if(comicModelss.size() > 0){
+//
+//                        for (ComicModel c: comicModelss) {
+//                            if(c.getFields().getTitle().getStringValue().equals(name)){
+//                                Log.d("Get Comic: ", c.getFields().getTitle().getStringValue());
+//                                adapter.updateData(c);
+//                            }
+//                        }
+//                    }
+//                } else {
+//                    Log.d("Error","Get data falseSSE");
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<QueryResponse<ComicModel>> call, Throwable t) {
+//                Log.d("Error","Get data false: " + t);
+//            }
+//        },"TruyenTranh");
+//    }
 }

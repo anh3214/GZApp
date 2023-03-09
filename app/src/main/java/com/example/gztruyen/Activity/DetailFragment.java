@@ -3,73 +3,62 @@ package com.example.gztruyen.Activity;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.gztruyen.CommonUltil.FakeData;
 import com.example.gztruyen.R;
 import com.example.gztruyen.adapters.ChaptersAdapter;
+import com.example.gztruyen.adapters.DetailAdapter;
+import com.example.gztruyen.adapters.TopTruyenAdapter;
 import com.example.gztruyen.adapters.TruyenTranhAdapter;
 import com.example.gztruyen.api.FireStoreApi;
 import com.example.gztruyen.model.ChapterModel;
 import com.example.gztruyen.model.ComicModel;
+import com.example.gztruyen.model.DocumentChap;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link DetailFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class DetailFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
     private RecyclerView item_truyen;
     private TruyenTranhAdapter adapter;
+    private TextView descriptionTitle;
+
+    String type;
+    String nameFiel;
+    String description;
+
     public DetailFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment DetailFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static DetailFragment newInstance(String param1, String param2) {
-        DetailFragment fragment = new DetailFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    private static DetailFragment instance;
+    public static DetailFragment getInstance(){
+        if(instance == null)
+            instance = new DetailFragment();
+        return instance;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
+        Bundle b = instance.getArguments();
+        type = b.getString("type");
+        nameFiel = b.getString("name");
+        description = b.getString("description");
+
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -85,6 +74,7 @@ public class DetailFragment extends Fragment {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this.getContext(),3);
         item_truyen.setAdapter(adapter);
         item_truyen.setLayoutManager(gridLayoutManager);
+        descriptionTitle.setText(description);
 
         return rootView;
     }
@@ -95,9 +85,21 @@ public class DetailFragment extends Fragment {
     }
     private void bindingView(View view){
         item_truyen = view.findViewById(R.id.item_truyen);
+        descriptionTitle = view.findViewById(R.id.descriptionContent);
     }
 
     private void bindingAction(View view) {
 
     }
+
+
+    public String cutURLName(String name){
+        int index = name.lastIndexOf("/") + 1; // tìm vị trí của dấu "/" cuối cùng
+        String result = name.substring(index); // lấy phần tử từ vị trí đó đến hết chuỗi
+        return result;
+    }
+
+
+
+
 }

@@ -42,4 +42,8 @@ public class ApiAdapter {
         Call<QueryResponse<DocumentChap>> call = sFirestoreApi.getAllChap(type,name);
         call.enqueue(callback);
     }
+
+    public void getComicModel(Callback<QueryResponse<ComicModel>> callback, String type, String name) {
+
+    }
 }
