@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gztruyen.R;
 import com.example.gztruyen.ViewHolder.ChapterViewHolder;
+import com.example.gztruyen.model.Chap;
 import com.example.gztruyen.model.DocumentChap;
 
 import java.util.List;
@@ -36,6 +37,7 @@ public class ChaptersAdapter extends RecyclerView.Adapter<ChapterViewHolder>{
     }
 
     public void setChapterList(List<DocumentChap> chapterList) {
+        Log.d("DataAffter",""+chapterList.size());this.chapterList = chapterList;
         Log.d("DataAffterAdapter",""+chapterList.size());
         this.chapterList = chapterList;
         if(chapterList.size() > 0){
