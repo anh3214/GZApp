@@ -22,15 +22,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-        <TextView
+    <TextView
             android:id="@+id/tvContent"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginStart="10dp"
             android:layout_marginTop="15dp"
             android:layout_marginEnd="10dp"
             android:background="#eae7e7"
-            android:fontFamily="@font/alice"
             android:text=" gfhfghxgfhfghfggfhfgh"
             android:textSize="25dp"
             android:scrollbars="vertical"

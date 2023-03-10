@@ -56,7 +56,7 @@ public class TruyenTranhViewHolder extends RecyclerView.ViewHolder {
         ArrayList url = new ArrayList<String>(a.getAvatar());
         i.putStringArrayListExtra("URLImage",url);
         context.startActivity(i);
-        Log.d("thanhdt", a.toString());
+        Log.d("thanhd", a.toString());
         Toast.makeText(context, "u press me " + titleView.getText(), Toast.LENGTH_SHORT).show();
     }
 
