@@ -24,9 +24,6 @@ public class TopTruyenAdapter extends RecyclerView.Adapter<BXHViewHolder>{
     public  TopTruyenAdapter(){
 
     }
-    public TopTruyenAdapter(List<ComicModel> comicList) {
-        this.comicList = comicList;
-    }
 
     public void updateData(List<ComicModel> data) {
         this.comicList = data;

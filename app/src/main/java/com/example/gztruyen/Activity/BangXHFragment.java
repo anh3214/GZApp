@@ -29,7 +29,9 @@ public class BangXHFragment extends Fragment {
     private RecyclerView rcvBXH;
     private Context context;
     private List<ComicModel> mList;
-    private TopTruyenAdapter adapterTopTruyen;
+    private TopTruyenAdapter adapterTopTruyenTranh;
+    private TopTruyenAdapter adapterTopTruyenChu;
+    private  int typeTruyen;
 
     private void bindingView(View view){
         rcvBXH = view.findViewById(R.id.rcvBXH);
@@ -37,9 +39,10 @@ public class BangXHFragment extends Fragment {
 
     private void bindingAction(View view){}
 
-    public BangXHFragment() {
-            // Required empty public constructor
-        }
+    public BangXHFragment(int type) {
+        // Required empty public constructor
+        typeTruyen = type;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -52,23 +55,32 @@ public class BangXHFragment extends Fragment {
         bindingView(rootView);
         bindingAction(rootView);
 
-        FakeData fakeData = new FakeData();
-        List<ComicModel> comicModels = fakeData.fakeDataComic();
 
-        //adapterComic  = new TruyenTranhAdapter();
-        //adapterComic.updateData(getTruyen(adapterComic));
-        adapterTopTruyen = new TopTruyenAdapter();
-         adapterTopTruyen.updateData(getTruyen(adapterTopTruyen));
+        adapterTopTruyenTranh = new TopTruyenAdapter();
+        adapterTopTruyenTranh.updateData(getTruyenTranh(adapterTopTruyenTranh));
+        adapterTopTruyenChu = new TopTruyenAdapter();
+        adapterTopTruyenChu.updateData(getTruyenChu(adapterTopTruyenChu));
         LinearLayoutManager layoutManager = new LinearLayoutManager(this.getContext());
-        rcvBXH.setAdapter(adapterTopTruyen);
+
+        if(typeTruyen ==0){
+            rcvBXH.setAdapter(adapterTopTruyenTranh);
+        }
+        else{
+            rcvBXH.setAdapter(adapterTopTruyenChu);
+        }
+
         rcvBXH.setLayoutManager(layoutManager);
 
         // Inflate the layout for this fragment
         return rootView;
     }
 
-    private List<ComicModel> getTruyen(TopTruyenAdapter adapter) {
+    private List<ComicModel> getTruyenTranh(TopTruyenAdapter adapter) {
         List<ComicModel> list = FireStoreApi.getAllCommicBXH(adapter);
+        return list;
+    }
+    private List<ComicModel> getTruyenChu(TopTruyenAdapter adapter) {
+        List<ComicModel> list = FireStoreApi.getAllStoryBXH(adapter);
         return list;
     }
 

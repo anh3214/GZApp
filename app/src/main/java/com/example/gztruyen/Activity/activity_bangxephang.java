@@ -33,7 +33,7 @@ public class activity_bangxephang extends AppCompatActivity {
         bindingView();
         bindingAction();
 
-        ViewMangaDetailAdapter mangaDetailAdapter = new ViewMangaDetailAdapter(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+
         BangXepHangAdapter bangXepHangAdapter = new BangXepHangAdapter(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         viewPager.setAdapter(bangXepHangAdapter);
         tabLayout.setupWithViewPager(viewPager);

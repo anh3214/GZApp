@@ -27,7 +27,7 @@ public class MangaDetailActivity extends AppCompatActivity {
     private String name;
     private String description;
 
-    private List<String> avatarComic;
+    private List<String> avatarStory;
 
 
     private void bindingView(){
@@ -35,13 +35,14 @@ public class MangaDetailActivity extends AppCompatActivity {
         type = i.getStringExtra(StaticCode.getInstance().TYPE_KEY);
         name = i.getStringExtra("name");
         description = i.getStringExtra("description");
-        avatarComic = i.getStringArrayListExtra("URLImage");
+        avatarStory = i.getStringArrayListExtra("URLImage");
         Log.d("name", name);
+        Log.d("description Chuyen", description);
         tabLayout = findViewById(R.id.tabLayout);
         viewPager = findViewById(R.id.viewPaper);
         imageView = findViewById(R.id.imageView4);
 
-        for (String url : avatarComic) {
+        for (String url : avatarStory) {
             Picasso.get()
                     .load(url)
                     .fit()

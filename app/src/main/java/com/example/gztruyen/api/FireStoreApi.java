@@ -70,10 +70,11 @@ public class FireStoreApi {
                     QueryResponse<ComicModel> queryResponse = response.body();
                     // Xử lý kết quả trả về ở đây
                     storyModelss.addAll(queryResponse.getDocuments());
-                    Log.d("Data",""+storyModelss.size());
+                    Log.d("Data Story Size",""+storyModelss.size());
                     if(storyModelss.size() > 0){
                         adapter.updateData(storyModelss);
                         for (ComicModel comic: storyModelss) {
+                            //Log.d("Data Story description",""+ comic.getFields().getDescription().getStringValue());
                             getUrlImageStory(comic.getFields().getImageShow().getReferenceValue(), adapter,comic.getName());
                         }
                     }
@@ -245,6 +246,35 @@ public class FireStoreApi {
             }
         },"TruyenTranh");
         return comicModelss;
+    }
+
+    public static List<ComicModel> getAllStoryBXH(TopTruyenAdapter adapter){
+        List<ComicModel> storyModelss = new ArrayList<>();
+        ApiAdapter.getInstance().basicIformationComic(new Callback<QueryResponse<ComicModel>>() {
+            @Override
+            public void onResponse(@NonNull Call<QueryResponse<ComicModel>> call, @NonNull Response<QueryResponse<ComicModel>> response) {
+                if (response.isSuccessful()) {
+                    QueryResponse<ComicModel> queryResponse = response.body();
+                    // Xử lý kết quả trả về ở đây
+                    storyModelss.addAll(queryResponse.getDocuments());
+                    Log.d("Data",""+storyModelss.size());
+                    if(storyModelss.size() > 0){
+                        adapter.updateData(storyModelss);
+                        for (ComicModel comic: storyModelss) {
+                            getUrlImageTopTruyen(comic.getFields().getImageShow().getReferenceValue(), adapter,comic.getName());
+                        }
+                    }
+                } else {
+                    Log.d("Error","Get data falseSSE");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<QueryResponse<ComicModel>> call, Throwable t) {
+                Log.d("Error","Get data false: " + t);
+            }
+        },"TruyenChu");
+        return storyModelss;
     }
 
     public static List<String> getUrlImageTopTruyen(String path, RecyclerView.Adapter adapter, String name){
