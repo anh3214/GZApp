@@ -20,6 +20,7 @@ public class ChapterViewHolder extends RecyclerView.ViewHolder implements View.O
     private Context context;
 
     private Integer totalChaps;
+    private String nameComicApi;
 
     private void bindingView(View itemView){
         tvChapter = itemView.findViewById(R.id.tvChapter);
@@ -36,8 +37,9 @@ public class ChapterViewHolder extends RecyclerView.ViewHolder implements View.O
         bindingAction(itemView);
     }
 
-    public void setChapter(DocumentChap chapter){
+    public void setChapter(DocumentChap chapter, String nameComicApi){
         tvChapter.setText(chapter.getFields().getTitle().getStringValue());
+        this.nameComicApi = nameComicApi;
     }
 
     @Override
@@ -57,6 +59,7 @@ public class ChapterViewHolder extends RecyclerView.ViewHolder implements View.O
         String a = chapter.substring(chapter.length() - 1, chapter.length());
         bundle.putString(StaticCode.getInstance().getCHAPTER_KEY(), a);
         bundle.putString(StaticCode.NUM_OF_CHAPS, allChaps.toString());
+        bundle.putString(StaticCode.COMIC_NAME_API, nameComicApi);
         i.putExtras(bundle);
         context.startActivity(i);
     }

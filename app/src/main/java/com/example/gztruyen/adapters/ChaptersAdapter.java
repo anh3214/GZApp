@@ -64,7 +64,8 @@ public class ChaptersAdapter extends RecyclerView.Adapter<ChapterViewHolder>{
             Log.d("Error","Nullll");
             return;
         }else {
-            holder.setChapter(chapterList.get(position));
+            holder.setChapter(chapterList.get(position),
+                    chapterList.get(position).getFields().getImage().getReferenceValue());
             holder.bindData(chapterList.size());
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
