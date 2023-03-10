@@ -12,6 +12,9 @@ public class StaticCode {
     public  static String STORY = "TruyenChu";
     public static String TYPE_KEY = "type";
     public static String NUM_OF_CHAPS = "numOFChap";
+    public static String TOKEN = "token";
+    public static String PREF = "myPrefs";
+    public static String USERNAME = "username";
 
     public String getCHAPTER_KEY() {
         return CHAPTER_KEY;
