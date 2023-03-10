@@ -80,10 +80,11 @@ public class ChaptersFragment extends Fragment {
         return rootView;
     }
 
-    private List<DocumentChap> getAllChapter(ChaptersAdapter adapter) {
 
+    private List<DocumentChap> getAllChapter(ChaptersAdapter adapter) {
         String name = cutURLName(nameFiel);
-        Log.d("thanhdt", type);
+        Log.d("thanhdt Ten Truyen", type);
+        Log.d("thanhdt Ten Truyen", name);
         List<DocumentChap> allChap = FireStoreApi.getAllChap(adapter, type, name);
         Log.d("size", allChap.size() + "");
         return allChap;

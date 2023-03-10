@@ -5,12 +5,15 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
 
+import com.example.gztruyen.Activity.BangXHFragment;
 import com.example.gztruyen.Activity.ChaptersFragment;
 import com.example.gztruyen.Activity.DetailFragment;
 
-public class ViewMangaDetailAdapter extends FragmentStatePagerAdapter {
-    public ViewMangaDetailAdapter(@NonNull FragmentManager fm, int behavior) {
+public class BangXepHangAdapter extends FragmentStatePagerAdapter{
+
+    public BangXepHangAdapter(@NonNull FragmentManager fm, int behavior) {
         super(fm, behavior);
     }
 
@@ -19,12 +22,11 @@ public class ViewMangaDetailAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position){
             case 0:
-                return new DetailFragment();
+                return new BangXHFragment(0);
             case 1:
-                return new ChaptersFragment();
-
+                return new BangXHFragment(1);
             default:
-                return new DetailFragment();
+                return new BangXHFragment(0);
         }
     }
 
@@ -34,15 +36,14 @@ public class ViewMangaDetailAdapter extends FragmentStatePagerAdapter {
         String title = "";
         switch (position){
             case 0:
-                title = "thông tin";
+                title = "TRUYỆN TRANH";
                 break;
             case 1:
-                title = "chapters";
+                title = "TIỂU THUYẾT";
                 break;
         }
         return title;
     }
-
 
     @Override
     public int getCount() {
