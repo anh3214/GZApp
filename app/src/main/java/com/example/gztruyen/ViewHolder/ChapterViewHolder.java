@@ -45,7 +45,7 @@ public class ChapterViewHolder extends RecyclerView.ViewHolder implements View.O
     public void setChapter(DocumentChap chapter){
         a1 = chapter;
         tvChapter.setText(chapter.getFields().getTitle().getStringValue());
-        if(chapter.getFields().getChapContent().getStringValue() != null){
+        if(chapter.getFields().getChapContent() != null){
             contentChap = chapter.getFields().getChapContent().getStringValue();
         }
     }
