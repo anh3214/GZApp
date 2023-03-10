@@ -32,12 +32,13 @@ public class ChapterViewHolder extends RecyclerView.ViewHolder implements View.O
     private String type;
 
 
+    private Integer totalChaps;
+
     private void bindingView(View itemView){
         tvChapter = itemView.findViewById(R.id.tvChapter);
     }
 
     private void bindingAction(View itemView) {
-
         tvChapter.setOnClickListener(this::readMangaChapter);
     }
     private String contentChap = "";
@@ -55,10 +56,13 @@ public class ChapterViewHolder extends RecyclerView.ViewHolder implements View.O
     }
 
 
-
     @Override
     public void onClick(View v) {
 
+    }
+
+    public void bindData(int value) {
+        totalChaps = value;
     }
 
     private void readMangaChapter(View view) {
@@ -96,5 +100,4 @@ public class ChapterViewHolder extends RecyclerView.ViewHolder implements View.O
         }
 
     }
-
 }

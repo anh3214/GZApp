@@ -22,6 +22,8 @@ import com.example.gztruyen.ui.truyentranh.TruyenTranhFragment;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+
 public class TruyenChuViewHolder extends RecyclerView.ViewHolder{
     public ImageView imageView;
     public TextView titleView;
@@ -46,6 +48,12 @@ public class TruyenChuViewHolder extends RecyclerView.ViewHolder{
         i.putExtra(StaticCode.getInstance().TYPE_KEY, StaticCode.getInstance().STORY);
         String name = a.getName();
         i.putExtra("name", name);
+        Log.d("name truyen chu", name);
+        String description = a.getFields().getDescription().getStringValue();
+        i.putExtra("description",description);
+        //String url = a.getAvatar().
+        ArrayList url = new ArrayList<String>(a.getAvatar());
+        i.putStringArrayListExtra("URLImage",url);
         context.startActivity(i);
         Log.d("thanhdt", a.toString());
         Toast.makeText(context, "u press me " + titleView.getText(), Toast.LENGTH_SHORT).show();

@@ -43,4 +43,7 @@ public class ApiAdapter {
         call.enqueue(callback);
     }
 
+    public void getComicModel(Callback<QueryResponse<ComicModel>> callback, String type, String name) {
+
+    }
 }

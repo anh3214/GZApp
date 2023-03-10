@@ -17,10 +17,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
+import com.example.gztruyen.Activity.activity_bangxephang;
 import com.example.gztruyen.R;
 import com.example.gztruyen.Activity.SearchActivity;
 import com.example.gztruyen.adapters.ApiAdapter;
@@ -48,6 +51,7 @@ public class TruyenTranhFragment extends Fragment {
     private ImageButton btnSearch;
     private GridLayoutManager gridLayoutManager;
     private Context context;
+    private TextView bxhTextView;
 
     public TruyenTranhFragment() {
     }
@@ -77,6 +81,7 @@ public class TruyenTranhFragment extends Fragment {
         btnSearch = view.findViewById(R.id.btnSearch);
         imageSlider = view.findViewById(R.id.imageSlider);
         item_truyen = view.findViewById(R.id.item_truyen);
+        bxhTextView = view.findViewById(R.id.bangxephang);
     }
 
     private void bindingAction(){
@@ -85,6 +90,7 @@ public class TruyenTranhFragment extends Fragment {
         imageSlider.setImageList(getImageList());
         imageSlider.setItemClickListener(this::itemClicker);
         item_truyen.setLayoutManager(gridLayoutManager);
+        bxhTextView.setOnClickListener(this::onOpenBangXepHang);
     }
     private void itemClicker(int i) {
         Log.d( "Items","Clicked" + i);
@@ -108,6 +114,12 @@ public class TruyenTranhFragment extends Fragment {
 //        Toast.makeText(context, "As u wish", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(context, SearchActivity.class);
         startActivity(intent);
+    }
+
+    private  void onOpenBangXepHang(View view){
+        Intent i = new Intent(context, activity_bangxephang.class);
+        context.startActivity(i);
+        Toast.makeText(context, "open BXH", Toast.LENGTH_SHORT).show();
     }
 
 
