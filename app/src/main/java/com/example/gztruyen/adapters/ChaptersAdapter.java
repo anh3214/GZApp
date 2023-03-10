@@ -16,8 +16,19 @@ import java.util.List;
 
 public class ChaptersAdapter extends RecyclerView.Adapter<ChapterViewHolder>{
     private List<DocumentChap> chapterList;
+    private Integer totalChapAdepter;
+    private ChapSize chapSize;
 
     public ChaptersAdapter() {
+    }
+
+    public ChaptersAdapter(Integer totalChapAdepter, ChapSize chapSize) {
+        this.totalChapAdepter = totalChapAdepter;
+        this.chapSize = chapSize;
+    }
+
+    public void setChapSize(ChapSize chapSize) {
+        this.chapSize = chapSize;
     }
 
     public ChaptersAdapter(List<DocumentChap> chapterList) {
@@ -25,13 +36,20 @@ public class ChaptersAdapter extends RecyclerView.Adapter<ChapterViewHolder>{
     }
 
     public void setChapterList(List<DocumentChap> chapterList) {
-        Log.d("DataAffter",""+chapterList.size());
+        Log.d("DataAffterAdapter",""+chapterList.size());
         this.chapterList = chapterList;
         if(chapterList.size() > 0){
             notifyDataSetChanged();
         }
     }
 
+    public void setTotalChap(Integer totalChap) {
+        Log.d("DataAffter1",""+totalChap);
+        this.totalChapAdepter = totalChap;
+        if(totalChap > 0){
+            notifyDataSetChanged();
+        }
+    }
     @NonNull
     @Override
     public ChapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -47,6 +65,16 @@ public class ChaptersAdapter extends RecyclerView.Adapter<ChapterViewHolder>{
             return;
         }else {
             holder.setChapter(chapterList.get(position));
+            holder.bindData(chapterList.size());
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (chapSize != null) {
+                        chapSize.onChapSizeReceived(chapterList.size());
+                    }
+                }
+            });
+
         }
     }
 
@@ -54,4 +82,10 @@ public class ChaptersAdapter extends RecyclerView.Adapter<ChapterViewHolder>{
     public int getItemCount() {
         return chapterList.size();
     }
+
+    public interface ChapSize {
+        Integer onChapSizeReceived(Integer size);
+    }
 }
+
+
