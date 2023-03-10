@@ -7,6 +7,9 @@ public class Fields {
     @SerializedName("chapTitle")
     private Title title;
 
+    @SerializedName("chapContent")
+    private Content chapContent;
+
     public Image getImage() {
         return Image;
     }
@@ -15,6 +18,7 @@ public class Fields {
         return title;
     }
 
+    public Content getChapContent(){return chapContent;}
     public void setImage(Image Image) {
         this.Image = Image;
     }
@@ -23,6 +27,16 @@ public class Fields {
         private String stringValue;
 
         public Title(String stringValue) {
+            this.stringValue = stringValue;
+        }
+
+        public String getStringValue() {
+            return stringValue;
+        }
+    }
+    public static class Content{
+        private String stringValue;
+        public Content(String stringValue) {
             this.stringValue = stringValue;
         }
 

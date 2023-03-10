@@ -42,4 +42,5 @@ public class ApiAdapter {
         Call<QueryResponse<DocumentChap>> call = sFirestoreApi.getAllChap(type,name);
         call.enqueue(callback);
     }
+
 }

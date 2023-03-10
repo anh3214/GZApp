@@ -19,4 +19,5 @@ public interface ApiService{
             @Path("type") String type,
             @Path("name") String collection
     );
+
 }
