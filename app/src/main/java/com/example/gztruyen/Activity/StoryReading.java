@@ -78,15 +78,9 @@ public class StoryReading extends AppCompatActivity implements TextToSpeech.OnIn
         }
     }
     private void bindingAction() {
-//        btnTTS.setOnClickListener(this::btnTTSClick);
     }
 
-    private void btnTTSClick(View view) {
-//        String text = contentChap;
-//        if(text.length() >0){
-//            toSpeech.speak(text, TextToSpeech.QUEUE_ADD,null);
-//        }
-    }
+
 
     private void bindingView() {
 
