@@ -19,6 +19,9 @@ public class ComicReading extends AppCompatActivity {
     private Button btnPrev;
     private Button btnSave;
     private Button btnNext;
+    String name;
+    String size;
+    String comicNameApi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +38,9 @@ public class ComicReading extends AppCompatActivity {
         btnNext = findViewById(R.id.btnNext);
 
         Bundle b = getIntent().getExtras();
+        name = b.getString(StaticCode.getInstance().getCHAPTER_KEY());
+        size = b.getString(StaticCode.NUM_OF_CHAPS);
+        comicNameApi = b.getString(StaticCode.COMIC_NAME_API);
 
         FrmComicReading fragobj = new FrmComicReading();
         fragobj.setArguments(b);
@@ -58,11 +64,20 @@ public class ComicReading extends AppCompatActivity {
         Bundle b = getIntent().getExtras();
         String chap = b.getString(StaticCode.getInstance().getCHAPTER_KEY());
         int c = Integer.parseInt(chap);
-        b.putString(StaticCode.getInstance().getCHAPTER_KEY(), (c+1) + "");
-        Intent intent = new Intent(this, ComicReading.class);
-        intent.putExtras(b);
-        startActivity(intent);
-        finish();
+        int max = Integer.parseInt(b.getString(StaticCode.NUM_OF_CHAPS));
+        if (c < max) {
+            String a = b.getString(StaticCode.COMIC_NAME_API);
+            String path = a.substring(0, a.length() - 1);
+            path += (c + 1);
+            b.putString(StaticCode.getInstance().getCHAPTER_KEY(), (c + 1) + "");
+            b.putString(StaticCode.COMIC_NAME_API, path);
+            Intent intent = new Intent(this, ComicReading.class);
+            intent.putExtras(b);
+            startActivity(intent);
+            finish();
+        } else {
+            Toast.makeText(this, "No more to read", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void saveLater(View view) {
@@ -73,11 +88,15 @@ public class ComicReading extends AppCompatActivity {
         Bundle b = getIntent().getExtras();
         String chap = b.getString(StaticCode.getInstance().getCHAPTER_KEY());
         int c = Integer.parseInt(chap);
-        if(c == 1){
+        if (c == 1) {
             Toast.makeText(this, "No previous chapter to load", Toast.LENGTH_SHORT).show();
             return;
         }
-        b.putString(StaticCode.getInstance().getCHAPTER_KEY(), (c-1) + "");
+        String a = b.getString(StaticCode.COMIC_NAME_API);
+        String path = a.substring(0, a.length() - 1);
+        path += (c - 1);
+        b.putString(StaticCode.getInstance().getCHAPTER_KEY(), (c - 1) + "");
+        b.putString(StaticCode.COMIC_NAME_API, path);
         Intent intent = new Intent(this, ComicReading.class);
         intent.putExtras(b);
         startActivity(intent);

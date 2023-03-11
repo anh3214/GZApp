@@ -32,9 +32,8 @@ public class FrmComicReading extends Fragment {
     private RecyclerView rcvComicPage;
     private Bundle bundle;
     private String chap;
-    private Integer mChap;
     private String nameComic;
-    private String chapterComic;
+    private int maxSize;
 
     private static final String BASE_URL = "gs://appproject-61e7e.appspot.com/TruyenTranh/";
 
@@ -62,10 +61,7 @@ public class FrmComicReading extends Fragment {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(view.getContext());
         rcvComicPage.setAdapter(adapter);
         rcvComicPage.setLayoutManager(layoutManager);
-        FireStoreApi.getUrlImage(BASE_URL +
-                        "TaKhongPhaiconCungCuaVanKhi" +
-                        "/" +
-                        "Chap_1",
+        FireStoreApi.getUrlImage(nameComic,
                 adapter,
                 ""
         );
@@ -78,9 +74,7 @@ public class FrmComicReading extends Fragment {
     private void bindingView(View view) {
         bundle = getArguments();
         if (bundle != null) {
-            chap = bundle.getString(StaticCode.getInstance().getCHAPTER_KEY());
-            mChap = Integer.parseInt(chap);
-            bundle.putString(StaticCode.getInstance().getCHAPTER_KEY(), (chap + 1) + "");
+            nameComic = bundle.getString(StaticCode.COMIC_NAME_API);
             getInstance().setArguments(bundle);
         }
         rcvComicPage = view.findViewById(R.id.rcv_read_comic);

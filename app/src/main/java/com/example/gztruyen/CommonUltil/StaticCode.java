@@ -15,6 +15,7 @@ public class StaticCode {
     public static String TOKEN = "token";
     public static String PREF = "myPrefs";
     public static String USERNAME = "username";
+    public static String COMIC_NAME_API = "comicName";
 
     public String getCHAPTER_KEY() {
         return CHAPTER_KEY;

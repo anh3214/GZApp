@@ -1,13 +1,13 @@
 package com.example.gztruyen.model;
 
 public class Image {
-    private String referenceValue;
+    private String stringValue;
 
     public String getReferenceValue() {
-        return referenceValue;
+        return stringValue;
     }
 
     public void setReferenceValue(String referenceValue) {
-        this.referenceValue = referenceValue;
+        this.stringValue = referenceValue;
     }
 }
