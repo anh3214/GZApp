@@ -2,18 +2,18 @@ package com.example.gztruyen.model;
 
 public class ChapterModel {
     private Long id;
-    private String title;
-    private String date;
-    private boolean isNewest;
+    private String image;
+    private String name;
+    private String createTime;
 
     public ChapterModel() {
     }
 
-    public ChapterModel(Long id, String title, String date, boolean isNewest) {
+    public ChapterModel(Long id, String image, String name, String createTime) {
         this.id = id;
-        this.title = title;
-        this.date = date;
-        this.isNewest = isNewest;
+        this.image = image;
+        this.name = name;
+        this.createTime = createTime;
     }
 
     public Long getId() {
@@ -24,27 +24,27 @@ public class ChapterModel {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getImage() {
+        return image;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setImage(String image) {
+        this.image = image;
     }
 
-    public String getDate() {
-        return date;
+    public String getName() {
+        return name;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public boolean isNewest() {
-        return isNewest;
+    public String getCreateTime() {
+        return createTime;
     }
 
-    public void setNewest(boolean newest) {
-        isNewest = newest;
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
     }
 }
