@@ -25,7 +25,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="53dp"
+            android:background="#eae7e7"
+            android:gravity="center"
+            android:text="Chương 1: Vương Giáo Đầu, phủ Duyên lánh gót Cửu Văn Long, thôn sử ra tay"
+            android:textColor="#008000"
+            android:textSize="17dp"
+            android:textStyle="bold"
+            />
+        <Button
+            android:id="@+id/btnTTS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="Đọc Truyện"
+            />
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/frmStoryReading"
             android:name="com.example.gztruyen.Activity.FrmStoryReading"
