@@ -36,6 +36,7 @@ public class ChaptersAdapter extends RecyclerView.Adapter<ChapterViewHolder>{
     }
 
     public void setChapterList(List<DocumentChap> chapterList) {
+        Log.d("DataAffter",""+chapterList.size());this.chapterList = chapterList;
         Log.d("DataAffterAdapter",""+chapterList.size());
         this.chapterList = chapterList;
         if(chapterList.size() > 0){
@@ -64,7 +65,7 @@ public class ChaptersAdapter extends RecyclerView.Adapter<ChapterViewHolder>{
             Log.d("Error","Nullll");
             return;
         }else {
-            holder.setChapter(chapterList.get(position),
+            holder.setChapterViewHolder(chapterList.get(position),
                     chapterList.get(position).getFields().getImage().getReferenceValue());
             holder.bindData(chapterList.size());
             holder.itemView.setOnClickListener(new View.OnClickListener() {

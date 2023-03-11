@@ -12,20 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GZTruyen"
         tools:targetApi="31">
-
-<!--        <activity-->
-<!--            android:name=".UserDetailActivity"-->
-<!--            android:exported="false" />-->
-<!--        <activity-->
-<!--            android:name=".ViewHolder.BXHViewHolder"-->
-<!--            android:exported="false" />-->
-<!--        <activity-->
-<!--            android:name=".BangXHFragment"-->
-<!--            android:exported="false" />-->
         <activity
-            android:name=".Activity.activity_bangxephang"
+            android:name=".Activity.StoryReading"
             android:exported="false" />
-
+        <activity
+            android:name=".UserDetailActivity"
+            android:exported="false" />
         <activity
             android:name=".Activity.ComicReading"
             android:exported="false" />

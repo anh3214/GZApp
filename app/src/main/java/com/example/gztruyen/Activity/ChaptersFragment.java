@@ -56,6 +56,8 @@ public class ChaptersFragment extends Fragment {
         Bundle b = instance.getArguments();
         type = b.getString("type");
         nameFiel = b.getString("name");
+
+
     }
 
     public String cutURLName(String name){
@@ -86,6 +88,7 @@ public class ChaptersFragment extends Fragment {
         Log.d("thanhdt Ten Truyen", type);
         Log.d("thanhdt Ten Truyen", name);
         List<DocumentChap> allChap = FireStoreApi.getAllChap(adapter, type, name);
+
         Log.d("size", allChap.size() + "");
         return allChap;
     }
