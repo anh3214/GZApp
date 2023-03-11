@@ -48,7 +48,8 @@
                     android:layout_weight="1"
                     android:background="@drawable/custom_button_tts"
                     android:text="Đọc Truyện"
-                    android:layout_marginTop="5dp"/>
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="15dp"/>
 
                 <Button
                     android:id="@+id/btnTTSStop"
@@ -58,6 +59,7 @@
                     android:background="@drawable/custom_button_ttsstop"
                     android:text="Dừng Đọc Truyện"
                     android:layout_marginTop="5dp"
+                    android:layout_marginRight="15dp"
                     />
             </LinearLayout>
 
