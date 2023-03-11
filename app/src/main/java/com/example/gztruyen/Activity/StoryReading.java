@@ -21,15 +21,15 @@ public class StoryReading extends AppCompatActivity implements TextToSpeech.OnIn
 
     private TextView tvTitle;
     private Button btnTTS;
+    private  Button btnTTSStop;
     TextToSpeech toSpeech;
     int MY_DATA_CHECK_CODE = 10000;
     int maxLength = 3500;
 
     private Button btnPrev;
-    private Button btnSave;
+
     private Button btnNext;
     private String nameChap;
-
     private String nameTitle;
     private String contentChap;
 
@@ -78,14 +78,19 @@ public class StoryReading extends AppCompatActivity implements TextToSpeech.OnIn
         }
     }
     private void bindingAction() {
+        btnTTSStop.setOnClickListener(this::btnTTSStopClick);
     }
 
+    private void btnTTSStopClick(View view) {
+        toSpeech.stop();
+    }
 
 
     private void bindingView() {
 
         tvTitle = findViewById(R.id.tvTitle);
         btnTTS = findViewById(R.id.btnTTS);
+        btnTTSStop = findViewById(R.id.btnTTSStop);
         Intent i = getIntent();
         nameChap = i.getStringExtra("name");
         nameTitle = i.getStringExtra("nameTitle");

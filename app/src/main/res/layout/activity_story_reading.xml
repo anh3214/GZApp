@@ -14,70 +14,81 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="1dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/tvTitle"
-            android:layout_width="match_parent"
-            android:layout_height="53dp"
-            android:background="#eae7e7"
-            android:gravity="center"
-            android:text="Chương 1: Vương Giáo Đầu, phủ Duyên lánh gót Cửu Văn Long, thôn sử ra tay"
-            android:textColor="#008000"
-            android:textSize="17dp"
-            android:textStyle="bold"
-            />
-        <Button
-            android:id="@+id/btnTTS"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:text="Đọc Truyện"
-            />
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/frmStoryReading"
-            android:name="com.example.gztruyen.Activity.FrmStoryReading"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:layout="@layout/fragment_frm_story_reading" />
-
         <LinearLayout
+            android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:layout_marginStart="1dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <Button
-                android:id="@+id/btnPrev"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Prev chapter" />
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="match_parent"
+                android:layout_height="53dp"
+                android:background="#eae7e7"
+                android:gravity="center"
+                android:text="Chương 1: Vương Giáo Đầu, phủ Duyên lánh gót Cửu Văn Long, thôn sử ra tay"
+                android:textColor="#008000"
+                android:textSize="17dp"
+                android:textStyle="bold" />
 
-            <Button
-                android:id="@+id/btnSave"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Save" />
+                android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/btnNext"
-                android:layout_width="wrap_content"
+                <Button
+                    android:id="@+id/btnTTS"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/custom_button_tts"
+                    android:text="Đọc Truyện"
+                    android:layout_marginTop="5dp"/>
+
+                <Button
+                    android:id="@+id/btnTTSStop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/custom_button_ttsstop"
+                    android:text="Dừng Đọc Truyện"
+                    android:layout_marginTop="5dp"
+                    />
+            </LinearLayout>
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/frmStoryReading"
+                android:name="com.example.gztruyen.Activity.FrmStoryReading"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Next chapter" />
+                tools:layout="@layout/fragment_frm_story_reading" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnPrev"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Prev chapter" />
+
+
+                <Button
+                    android:id="@+id/btnNext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Next chapter" />
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
