@@ -31,7 +31,6 @@ public class FrmStoryReading extends Fragment {
         return frm;
     }
 
-    private TextView tvTitle;
     private TextView tvContent;
 
 
@@ -51,10 +50,7 @@ public class FrmStoryReading extends Fragment {
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_frm_story_reading, container, false);
     }
-    public void setChapter(DocumentChap chapter){
-        tvTitle.setText(chapter.getFields().getTitle().getStringValue());
-        tvContent.setText(chapter.getFields().getChapContent().getStringValue());
-    }
+
    private String nameChap;
     private String nameTitle;
     String type;
@@ -72,7 +68,7 @@ public class FrmStoryReading extends Fragment {
         nameTitle = b.getString("nameTitle");
         contentChap = b.getString("contentChap");
 
-        tvTitle.setText(nameTitle);
+
         tvContent.setMovementMethod(new ScrollingMovementMethod());
         tvContent.setText(contentChap);
 
@@ -84,7 +80,6 @@ public class FrmStoryReading extends Fragment {
     }
     private void bindingView(View view) {
 
-        tvTitle = view.findViewById(R.id.tvTitle);
         tvContent = view.findViewById(R.id.tvContent);
         context = view.getContext();
 
