@@ -65,6 +65,11 @@ public class ChapterViewHolder extends RecyclerView.ViewHolder implements View.O
     }
 
     private void readMangaChapter(View view) {
+        type = getTypeFromUser();
+        if (type != null) {
+            readStoryChapter(view);
+            return;
+        }
         Integer allChaps = totalChaps;
         String chapter = tvChapter.getText().toString();
         Intent i = new Intent(context, ComicReading.class);
@@ -75,5 +80,35 @@ public class ChapterViewHolder extends RecyclerView.ViewHolder implements View.O
         bundle.putString(StaticCode.COMIC_NAME_API, nameComicApi);
         i.putExtras(bundle);
         context.startActivity(i);
+    }
+
+    private void readStoryChapter(View view) {
+        String name = a1.getName();
+        Log.d("thanhdt", contentChap);
+        Intent i = new Intent(context, StoryReading.class);
+        i.putExtra("name", name);
+        i.putExtra("nameTitle", tvChapter.getText());
+        i.putExtra("contentChap", contentChap);
+        context.startActivity(i);
+    }
+
+    private String getTypeFromUser() {
+        try {
+            String name = a1.getName();
+            String[] strArr = name.split("/");
+            String reversedStr = "";
+            for (int i = strArr.length - 1; i >= 0; i--) {
+                reversedStr += strArr[i];
+                if (i != 0) {
+                    reversedStr += "/";
+                }
+            }
+            String str = reversedStr;
+            String[] reverseList = str.split("/");
+            return reverseList[3];
+        } catch (Exception e) {
+            Log.d("thanhdt", e.getMessage());
+            return null;
+        }
     }
 }

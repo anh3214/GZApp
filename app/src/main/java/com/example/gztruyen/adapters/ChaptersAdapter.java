@@ -14,7 +14,7 @@ import com.example.gztruyen.model.DocumentChap;
 
 import java.util.List;
 
-public class ChaptersAdapter extends RecyclerView.Adapter<ChapterViewHolder>{
+public class ChaptersAdapter extends RecyclerView.Adapter<ChapterViewHolder> {
     private List<DocumentChap> chapterList;
     private Integer totalChapAdepter;
     private ChapSize chapSize;
@@ -36,37 +36,43 @@ public class ChaptersAdapter extends RecyclerView.Adapter<ChapterViewHolder>{
     }
 
     public void setChapterList(List<DocumentChap> chapterList) {
-        Log.d("DataAffter",""+chapterList.size());this.chapterList = chapterList;
-        Log.d("DataAffterAdapter",""+chapterList.size());
+        Log.d("DataAffter", "" + chapterList.size());
         this.chapterList = chapterList;
-        if(chapterList.size() > 0){
+        Log.d("DataAffterAdapter", "" + chapterList.size());
+        this.chapterList = chapterList;
+        if (chapterList.size() > 0) {
             notifyDataSetChanged();
         }
     }
 
     public void setTotalChap(Integer totalChap) {
-        Log.d("DataAffter1",""+totalChap);
+        Log.d("DataAffter1", "" + totalChap);
         this.totalChapAdepter = totalChap;
-        if(totalChap > 0){
+        if (totalChap > 0) {
             notifyDataSetChanged();
         }
     }
+
     @NonNull
     @Override
     public ChapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.chapter_holder,parent,false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.chapter_holder, parent, false);
         ChapterViewHolder recycleViewHolder = new ChapterViewHolder(v, parent.getContext());
         return recycleViewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull ChapterViewHolder holder, int position) {
-        if(chapterList.size() == 0){
-            Log.d("Error","Nullll");
+        if (chapterList.size() == 0) {
+            Log.d("Error", "Nullll");
             return;
-        }else {
-            holder.setChapterViewHolder(chapterList.get(position),
-                    chapterList.get(position).getFields().getImage().getReferenceValue());
+        } else {
+            if (chapterList.get(position).getFields().getImage() == null) {
+                holder.setChapterViewHolder(chapterList.get(position));
+            } else {
+                holder.setChapterViewHolder(chapterList.get(position),
+                        chapterList.get(position).getFields().getImage().getReferenceValue());
+            }
             holder.bindData(chapterList.size());
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
