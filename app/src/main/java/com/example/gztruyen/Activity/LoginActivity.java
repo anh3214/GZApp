@@ -9,15 +9,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.gztruyen.CommonUltil.StaticCode;
 import com.example.gztruyen.Home;
 import com.example.gztruyen.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
@@ -46,10 +42,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void btnLoginClick(View view) {
-        mAuth.signInWithEmailAndPassword(username.getText().toString(), password.getText().toString())
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
+        try{
+            mAuth.signInWithEmailAndPassword(username.getText().toString(), password.getText().toString())
+                    .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
                             Intent intent = new Intent(LoginActivity.this, Home.class);
                             startActivity(intent);
@@ -57,13 +52,15 @@ public class LoginActivity extends AppCompatActivity {
                             SharedPreferences.Editor editor = pref.edit();
                             editor.putString(StaticCode.TOKEN, task.getResult().toString());
                             editor.putString(StaticCode.USERNAME, username.getText().toString());
-                            editor.commit();
+                            editor.apply();
                             finish();
                         } else {
                             Toast.makeText(LoginActivity.this, "Login failed", Toast.LENGTH_SHORT).show();
                         }
-                    }
-                });
+                    });
+        }catch (Exception e){
+            Toast.makeText(LoginActivity.this,"Login failed", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

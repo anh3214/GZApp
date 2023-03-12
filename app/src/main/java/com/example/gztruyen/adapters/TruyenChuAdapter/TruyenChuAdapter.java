@@ -1,37 +1,34 @@
-package com.example.gztruyen.adapters;
+package com.example.gztruyen.adapters.TruyenChuAdapter;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gztruyen.R;
+import com.example.gztruyen.ViewHolder.TruyenChuViewHolder;
 import com.example.gztruyen.ViewHolder.TruyenTranhViewHolder;
-import com.example.gztruyen.api.FireStoreApi;
 import com.example.gztruyen.model.ComicModel;
-import com.squareup.picasso.Callback;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class TruyenTranhAdapter extends RecyclerView.Adapter<TruyenTranhViewHolder> {
+public class TruyenChuAdapter extends RecyclerView.Adapter<TruyenChuViewHolder>{
     private List<ComicModel> mList;
-    private TruyenTranhViewHolder.OnItemClickListener onItemClickListener;
+    private TruyenChuViewHolder.OnItemClickListener onItemClickListener;
 
-
-    public TruyenTranhAdapter(List<ComicModel> mList) {
+    public TruyenChuAdapter(List<ComicModel> mList) {
         this.mList = mList;
     }
 
-    public TruyenTranhAdapter() {
+    public TruyenChuAdapter() {
     }
 
-    public TruyenTranhAdapter(List<ComicModel> mList, TruyenTranhViewHolder.OnItemClickListener onItemClickListener){
+    public TruyenChuAdapter(List<ComicModel> mList, TruyenChuViewHolder.OnItemClickListener onItemClickListener){
         this.mList = mList;
         this.onItemClickListener = onItemClickListener;
     }
@@ -41,7 +38,7 @@ public class TruyenTranhAdapter extends RecyclerView.Adapter<TruyenTranhViewHold
             notifyDataSetChanged();
         }
     }
-    public void updateUrl(List<String> url,String name){
+    public void updateUrlStory(List<String> url,String name){
         for (ComicModel comic: this.mList) {
             if(comic.getName().equals(name)){
                 comic.setAvatar(url);
@@ -49,22 +46,22 @@ public class TruyenTranhAdapter extends RecyclerView.Adapter<TruyenTranhViewHold
         }
         notifyDataSetChanged();
     }
+
     @NonNull
     @Override
-    public TruyenTranhViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public TruyenChuViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_holder,parent,false);
-        return new TruyenTranhViewHolder(view, parent.getContext());
+        return new TruyenChuViewHolder(view,parent.getContext());
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TruyenTranhViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull TruyenChuViewHolder holder, int position) {
         ComicModel comicModel = mList.get(position);
         if(comicModel == null){
             return;
         }
 
         holder.setData(mList.get(position));
-
     }
 
     @Override

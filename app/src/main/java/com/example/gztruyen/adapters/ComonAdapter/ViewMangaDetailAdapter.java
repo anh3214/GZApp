@@ -1,4 +1,4 @@
-package com.example.gztruyen.adapters;
+package com.example.gztruyen.adapters.ComonAdapter;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -6,8 +6,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
-import com.example.gztruyen.Activity.ChaptersFragment;
-import com.example.gztruyen.Activity.DetailFragment;
+import com.example.gztruyen.fragment.ChaptersFragment;
+import com.example.gztruyen.fragment.DetailFragment;
 
 public class ViewMangaDetailAdapter extends FragmentStatePagerAdapter {
     public ViewMangaDetailAdapter(@NonNull FragmentManager fm, int behavior) {

@@ -40,19 +40,20 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void btnSignUpClick(View view) {
-        mAuth.createUserWithEmailAndPassword(email.getText().toString(),password.getText().toString())
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
+        try{
+            mAuth.createUserWithEmailAndPassword(email.getText().toString(),password.getText().toString())
+                    .addOnCompleteListener(task -> {
                         if(task.isSuccessful()){
                             Toast.makeText(RegisterActivity.this, "Register Susscessfuly", Toast.LENGTH_SHORT).show();
                             Intent it = new Intent(RegisterActivity.this, LoginActivity.class);
                             startActivity(it);
                         }else{
-                            Log.d("Debug","Create false");
+                            Toast.makeText(RegisterActivity.this, "Register False", Toast.LENGTH_SHORT).show();
                         }
-                    }
-                });
+                    });
+        }catch (Exception e){
+            Toast.makeText(RegisterActivity.this, "Register False", Toast.LENGTH_SHORT).show();
+        }
     }
 
 

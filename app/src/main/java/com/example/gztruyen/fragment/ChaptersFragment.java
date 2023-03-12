@@ -1,4 +1,4 @@
-package com.example.gztruyen.Activity;
+package com.example.gztruyen.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,11 +11,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import com.example.gztruyen.CommonUltil.Common;
 import com.example.gztruyen.R;
-import com.example.gztruyen.adapters.ChaptersAdapter;
+import com.example.gztruyen.adapters.ComonAdapter.ChaptersAdapter;
 import com.example.gztruyen.api.FireStoreApi;
 import com.example.gztruyen.model.DocumentChap;
 

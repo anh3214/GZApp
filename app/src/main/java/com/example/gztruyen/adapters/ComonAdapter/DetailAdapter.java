@@ -1,4 +1,4 @@
-package com.example.gztruyen.adapters;
+package com.example.gztruyen.adapters.ComonAdapter;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

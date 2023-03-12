@@ -1,4 +1,4 @@
-package com.example.gztruyen.adapters;
+package com.example.gztruyen.adapters.ComonAdapter;
 
 import android.view.LayoutInflater;
 import android.view.View;

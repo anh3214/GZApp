@@ -7,8 +7,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.os.Bundle;
 
 import com.example.gztruyen.R;
-import com.example.gztruyen.adapters.BangXepHangAdapter;
-import com.example.gztruyen.adapters.ViewMangaDetailAdapter;
+import com.example.gztruyen.adapters.ComonAdapter.BangXepHangAdapter;
 import com.google.android.material.tabs.TabLayout;
 
 public class activity_bangxephang extends AppCompatActivity {

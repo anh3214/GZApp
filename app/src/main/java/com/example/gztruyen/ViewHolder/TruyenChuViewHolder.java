@@ -10,15 +10,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.gztruyen.Activity.MangaDetailActivity;
+import com.example.gztruyen.Activity.detailActivity.MangaDetailActivity;
 import com.example.gztruyen.CommonUltil.StaticCode;
-import com.example.gztruyen.Home;
 import com.example.gztruyen.R;
 import com.example.gztruyen.model.ComicModel;
-import com.example.gztruyen.ui.truyentranh.TruyenTranhFragment;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 

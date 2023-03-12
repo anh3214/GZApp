@@ -1,4 +1,4 @@
-package com.example.gztruyen.ui.userdetail;
+package com.example.gztruyen.fragment.userdetail;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,7 +20,7 @@ import com.example.gztruyen.Activity.userDetailActivity.MyMangaAdapter;
 import com.example.gztruyen.CommonUltil.Common;
 import com.example.gztruyen.CommonUltil.StaticCode;
 import com.example.gztruyen.R;
-import com.example.gztruyen.ui.truyentranh.TruyenTranhFragment;
+import com.example.gztruyen.fragment.truyentranh.TruyenTranhFragment;
 import com.google.android.material.tabs.TabLayout;
 
 public class UserDetailFragment extends Fragment {

@@ -15,7 +15,7 @@
     <item
         android:id="@+id/navigation_user_detail"
         android:title="Me"
-        android:icon="@drawable/me"/>
+        android:icon="@drawable/discover_8"/>
 
     <item
         android:id="@+id/navigation_truyen_chu"

@@ -1,9 +1,8 @@
-package com.example.gztruyen.Activity;
+package com.example.gztruyen.Activity.readingActivity;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
@@ -14,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.gztruyen.R;
+import com.example.gztruyen.fragment.truyenchu.FrmStoryReading;
 
 import java.util.ArrayList;
 

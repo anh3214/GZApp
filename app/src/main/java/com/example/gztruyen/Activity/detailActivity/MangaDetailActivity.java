@@ -1,4 +1,4 @@
-package com.example.gztruyen.Activity;
+package com.example.gztruyen.Activity.detailActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentStatePagerAdapter;
@@ -9,9 +9,11 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.util.Log;
 
+import com.example.gztruyen.fragment.ChaptersFragment;
 import com.example.gztruyen.CommonUltil.StaticCode;
 import com.example.gztruyen.R;
-import com.example.gztruyen.adapters.ViewMangaDetailAdapter;
+import com.example.gztruyen.adapters.ComonAdapter.ViewMangaDetailAdapter;
+import com.example.gztruyen.fragment.DetailFragment;
 import com.google.android.material.tabs.TabLayout;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;

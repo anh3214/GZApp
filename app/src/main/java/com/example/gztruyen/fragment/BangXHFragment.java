@@ -1,6 +1,5 @@
-package com.example.gztruyen.Activity;
+package com.example.gztruyen.fragment;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,17 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.gztruyen.CommonUltil.FakeData;
 import com.example.gztruyen.R;
-import com.example.gztruyen.adapters.BangXepHangAdapter;
-import com.example.gztruyen.adapters.ChaptersAdapter;
-import com.example.gztruyen.adapters.TopTruyenAdapter;
-import com.example.gztruyen.adapters.TruyenTranhAdapter;
+import com.example.gztruyen.adapters.ComonAdapter.TopTruyenAdapter;
 import com.example.gztruyen.api.FireStoreApi;
-import com.example.gztruyen.model.ChapterModel;
 import com.example.gztruyen.model.ComicModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class BangXHFragment extends Fragment {

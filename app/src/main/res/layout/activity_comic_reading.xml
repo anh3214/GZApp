@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.ComicReading">
+    tools:context=".Activity.readingActivity.ComicReading">
 
     <LinearLayout
         android:layout_width="0dp"
@@ -18,7 +18,7 @@
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/frmComicReading"
-            android:name="com.example.gztruyen.Activity.FrmComicReading"
+            android:name="com.example.gztruyen.fragment.truyentranh.FrmComicReading"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:layout="@layout/fragment_frm_comic_reading" />

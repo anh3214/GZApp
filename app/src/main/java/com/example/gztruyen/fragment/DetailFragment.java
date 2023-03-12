@@ -1,31 +1,21 @@
-package com.example.gztruyen.Activity;
+package com.example.gztruyen.fragment;
 
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.gztruyen.CommonUltil.FakeData;
 import com.example.gztruyen.R;
-import com.example.gztruyen.adapters.ChaptersAdapter;
-import com.example.gztruyen.adapters.DetailAdapter;
-import com.example.gztruyen.adapters.TopTruyenAdapter;
-import com.example.gztruyen.adapters.TruyenTranhAdapter;
+import com.example.gztruyen.adapters.TruyenTranhAdapter.TruyenTranhAdapter;
 import com.example.gztruyen.api.FireStoreApi;
-import com.example.gztruyen.model.ChapterModel;
 import com.example.gztruyen.model.ComicModel;
-import com.example.gztruyen.model.DocumentChap;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class DetailFragment extends Fragment {
