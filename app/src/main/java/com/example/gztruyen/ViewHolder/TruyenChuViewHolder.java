@@ -17,11 +17,14 @@ import com.example.gztruyen.Activity.MangaDetailActivity;
 import com.example.gztruyen.CommonUltil.StaticCode;
 import com.example.gztruyen.Home;
 import com.example.gztruyen.R;
+import com.example.gztruyen.dbsqlite.DBContextHistory;
 import com.example.gztruyen.model.ComicModel;
 import com.example.gztruyen.ui.truyentranh.TruyenTranhFragment;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class TruyenChuViewHolder extends RecyclerView.ViewHolder{
@@ -31,10 +34,13 @@ public class TruyenChuViewHolder extends RecyclerView.ViewHolder{
     private Context context;
     private ComicModel a;
 
+    private DBContextHistory db;
+
     private void bindindView() {
         imageView = itemView.findViewById(R.id.imageView);
         titleView = itemView.findViewById(R.id.txView);
         item_truyen_line = itemView.findViewById(R.id.item_truyen_line);
+        db = new DBContextHistory(context);
     }
     private void btnItemDetail(View view) {
         Log.d("Error","Truyen Chu ne");
@@ -54,6 +60,16 @@ public class TruyenChuViewHolder extends RecyclerView.ViewHolder{
         //String url = a.getAvatar().
         ArrayList url = new ArrayList<String>(a.getAvatar());
         i.putStringArrayListExtra("URLImage",url);
+
+        LocalDateTime now = null;
+        String formatDateTime = "";
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            now = LocalDateTime.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy");
+
+            formatDateTime = now.format(formatter);
+        }
+        db.insertHistory(titleView.getText().toString(), formatDateTime);
         context.startActivity(i);
         Log.d("thanhdt", a.toString());
         Toast.makeText(context, "u press me " + titleView.getText(), Toast.LENGTH_SHORT).show();

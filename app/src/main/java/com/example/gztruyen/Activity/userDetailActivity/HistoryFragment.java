@@ -12,9 +12,10 @@ import android.view.ViewGroup;
 
 import com.example.gztruyen.R;
 import com.example.gztruyen.adapters.HistoryAdapter;
+import com.example.gztruyen.dbsqlite.DBContextHistory;
 import com.example.gztruyen.model.ChapterModel;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -22,12 +23,15 @@ public class HistoryFragment extends Fragment {
 
     private RecyclerView rcvHistory;
 
+    private DBContextHistory db;
+
     public HistoryFragment() {
         // Required empty public constructor
     }
 
     private void bindingView(View view){
         rcvHistory = view.findViewById(R.id.rcvHistory);
+        db = new DBContextHistory(this.getContext());
     }
 
     private void bindingAction(View view){
@@ -49,10 +53,12 @@ public class HistoryFragment extends Fragment {
         bindingView(rootView);
         bindingAction(rootView);
 
-        List<ChapterModel> chapHistories = new ArrayList<>();
-        for(int i = 0; i < 20; i++){
-            chapHistories.add(new ChapterModel((long) i,String.valueOf(R.drawable.img_loading_img),"name"+i, "time"));
-        }
+        List<ChapterModel> chapHistories = db.listAll();
+        Collections.reverse(chapHistories);
+//        for(int i = 0; i < 20; i++){
+//            chapHistories.add(new ChapterModel((long) i,String.valueOf(R.drawable.img_loading_img),"name"+i, "time"));
+//        }
+        chapHistories.add(new ChapterModel((long) 1,String.valueOf(R.drawable.img_loading_img),"name", "time"));
         HistoryAdapter adapter = new HistoryAdapter(chapHistories);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this.getContext());
         rcvHistory.setAdapter(adapter);
