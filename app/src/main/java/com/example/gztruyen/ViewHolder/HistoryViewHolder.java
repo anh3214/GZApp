@@ -37,8 +37,20 @@ public class HistoryViewHolder extends RecyclerView.ViewHolder implements View.O
     }
 
     public void setMangaHistory(ChapterModel chapterModel){
-        tvNameHistory.setText(chapterModel.getName());
+        tvNameHistory.setText(formatString(chapterModel.getName()));
         tvCreateTimeHistory.setText(chapterModel.getCreateTime());
+    }
+
+    private String formatString(String string){
+        if(string.length() > 7){
+            string = string.substring(0,6) + "...";
+        }
+        else{
+            while(string.length() <= 8){
+                string = string + " ";
+            }
+        }
+        return string;
     }
 
     public void setItemClickListener(HistoryAdapter.ItemClickListener itemClickListener)

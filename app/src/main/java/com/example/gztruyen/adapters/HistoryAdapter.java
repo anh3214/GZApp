@@ -41,7 +41,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryViewHolder> {
             @Override
             public void onClick(View view, int position, boolean isLongClick) {
                 if(!isLongClick)
-                    Toast.makeText(view.getContext(), "On Click: " + chapHistories.get(position), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(view.getContext(), chapHistories.get(position).getName(), Toast.LENGTH_SHORT).show();
             }
         });
 
