@@ -16,11 +16,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.gztruyen.Activity.MangaDetailActivity;
 import com.example.gztruyen.CommonUltil.StaticCode;
 import com.example.gztruyen.R;
-import com.example.gztruyen.adapters.TruyenTranhAdapter;
+import com.example.gztruyen.dbsqlite.DBContextHistory;
 import com.example.gztruyen.model.ComicModel;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class TruyenTranhViewHolder extends RecyclerView.ViewHolder {
@@ -28,12 +31,14 @@ public class TruyenTranhViewHolder extends RecyclerView.ViewHolder {
     public TextView titleView;
     private Context context;
     private ComicModel a;
+    private DBContextHistory db;
 
 
     private void bindindView() {
         imageView = itemView.findViewById(R.id.imageView);
         titleView = itemView.findViewById(R.id.txView);
         item_truyen_line = itemView.findViewById(R.id.item_truyen_line);
+        db = new DBContextHistory(context);
     }
     private LinearLayout item_truyen_line;
 
@@ -55,6 +60,16 @@ public class TruyenTranhViewHolder extends RecyclerView.ViewHolder {
         //String url = a.getAvatar().
         ArrayList url = new ArrayList<String>(a.getAvatar());
         i.putStringArrayListExtra("URLImage",url);
+
+        LocalDateTime now = null;
+        String formatDateTime = "";
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            now = LocalDateTime.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy");
+
+            formatDateTime = now.format(formatter);
+        }
+        db.insertHistory(titleView.getText().toString(), formatDateTime);
         context.startActivity(i);
     }
 
