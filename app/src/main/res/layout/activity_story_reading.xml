@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.StoryReading">
+    tools:context=".Activity.readingActivity.StoryReading">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -65,7 +65,7 @@
 
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/frmStoryReading"
-                android:name="com.example.gztruyen.Activity.FrmStoryReading"
+                android:name="com.example.gztruyen.fragment.truyenchu.FrmStoryReading"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:layout="@layout/fragment_frm_story_reading" />

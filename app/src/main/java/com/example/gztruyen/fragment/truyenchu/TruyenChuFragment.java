@@ -1,4 +1,4 @@
-package com.example.gztruyen.ui.truyenchu;
+package com.example.gztruyen.fragment.truyenchu;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,33 +15,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.TextView;
 
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
 import com.example.gztruyen.Activity.SearchActivity;
 import com.example.gztruyen.R;
-import com.example.gztruyen.adapters.TruyenChuAdapter;
-import com.example.gztruyen.adapters.TruyenTranhAdapter;
+import com.example.gztruyen.adapters.TruyenChuAdapter.TruyenChuAdapter;
 import com.example.gztruyen.api.FireStoreApi;
 import com.example.gztruyen.databinding.FragmentTruyenChuBinding;
-import com.example.gztruyen.databinding.FragmentTruyenTranhBinding;
 import com.example.gztruyen.model.ComicModel;
-import com.example.gztruyen.ui.truyentranh.TruyenTranhViewModel;
-import com.example.gztruyen.ui.truyentranh.TruyenTranhViewModel;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class TruyenChuFragment extends Fragment {
     private TruyenChuAdapter adapter;
-    private ArrayList<SlideModel> imageList;
+    private ArrayList<SlideModel> imageList = new ArrayList<>();
+    private ArrayList<String> imageListCheck = new ArrayList<>();
     private RecyclerView item_truyen;
     private FragmentTruyenChuBinding binding;
     private ImageSlider imageSlider;
@@ -90,14 +81,21 @@ public class TruyenChuFragment extends Fragment {
         Log.d( "Items","Clicked" + i);
     }
 
-    private List<SlideModel> getImageList() {
-        TruyenChuViewModel viewModel = new ViewModelProvider(this).get(TruyenChuViewModel.class);
-        imageList = new ArrayList<>(); // Create image list
-        ArrayList<String> imageUrl = viewModel.getText();
-
-        for (String s:imageUrl) {
-            imageList.add(new SlideModel(s, ScaleTypes.FIT));
+    public void reloadImageSlide(List<String> slider){
+        for (String image:
+                slider) {
+            if(!imageListCheck.contains(image)){
+                imageList.add(new SlideModel(image,ScaleTypes.FIT));
+                imageListCheck.add(image);
+            }
         }
+        imageSlider.setImageList(imageList);
+    }
+    private List<SlideModel> getImageList() {
+        TruyenChuFragment fragment = this;
+        imageList = new ArrayList<>(); // Create image list
+        imageListCheck = new ArrayList<>();
+        List<String> list = FireStoreApi.getAllHot("TruyenChuHot",fragment);
         return imageList;
     }
     private List<ComicModel> getTruyen(TruyenChuAdapter adapter) {
@@ -105,7 +103,6 @@ public class TruyenChuFragment extends Fragment {
         return list;
     }
     private void btnSearchOnClick(View view) {
-//        Toast.makeText(context, "As u wish", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(context, SearchActivity.class);
         startActivity(intent);
     }

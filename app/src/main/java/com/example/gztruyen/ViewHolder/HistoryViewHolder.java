@@ -3,13 +3,15 @@ package com.example.gztruyen.ViewHolder;
 import android.content.Context;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
+
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gztruyen.R;
-import com.example.gztruyen.adapters.HistoryAdapter;
+
+import com.example.gztruyen.adapters.ComonAdapter.HistoryAdapter;
+
 import com.example.gztruyen.model.ChapterModel;
 
 public class HistoryViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

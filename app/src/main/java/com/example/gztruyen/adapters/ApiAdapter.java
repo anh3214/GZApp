@@ -2,10 +2,10 @@ package com.example.gztruyen.adapters;
 
 
 import com.example.gztruyen.api.ApiService;
-import com.example.gztruyen.model.Chap;
 import com.example.gztruyen.model.ComicModel;
 import com.example.gztruyen.model.DocumentChap;
 import com.example.gztruyen.model.QueryResponse;
+import com.example.gztruyen.model.TruyenHot;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -45,5 +45,9 @@ public class ApiAdapter {
 
     public void getComicModel(Callback<QueryResponse<ComicModel>> callback, String type, String name) {
 
+    }
+    public void getAllHot(Callback<QueryResponse<TruyenHot>> callback,String type){
+        Call<QueryResponse<TruyenHot>> call = sFirestoreApi.getAllHot(type);
+        call.enqueue(callback);
     }
 }

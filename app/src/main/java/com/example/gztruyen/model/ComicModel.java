@@ -44,9 +44,9 @@ public class ComicModel {
     }
 
     public static class Fields {
-        private ImageShow ImageShow;
-        private Title Title;
-        private Description Description;
+        private final ImageShow ImageShow;
+        private final Title Title;
+        private final Description Description;
 
         public Fields(ImageShow imageShow, Title title, Description description) {
             ImageShow = imageShow;
@@ -68,7 +68,7 @@ public class ComicModel {
     }
 
     public static class ImageShow {
-        private String stringValue;
+        private final String stringValue;
 
         public ImageShow(String referenceValue) {
             this.stringValue = referenceValue;
@@ -80,7 +80,7 @@ public class ComicModel {
     }
 
     public static class Title {
-        private String stringValue;
+        private final String stringValue;
 
         public Title(String stringValue) {
             this.stringValue = stringValue;
@@ -92,7 +92,7 @@ public class ComicModel {
     }
 
     public static class Description {
-        private String stringValue;
+        private final String stringValue;
 
         public Description(String stringValue) {
             this.stringValue = stringValue;

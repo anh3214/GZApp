@@ -1,18 +1,17 @@
-package com.example.gztruyen.Activity;
+package com.example.gztruyen.Activity.readingActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.gztruyen.CommonUltil.StaticCode;
 import com.example.gztruyen.R;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.example.gztruyen.fragment.truyentranh.FrmComicReading;
 
 public class ComicReading extends AppCompatActivity {
 

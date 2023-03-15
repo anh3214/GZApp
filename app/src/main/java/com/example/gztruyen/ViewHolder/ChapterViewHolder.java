@@ -6,13 +6,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.gztruyen.Activity.ComicReading;
-import com.example.gztruyen.Activity.StoryReading;
+import com.example.gztruyen.Activity.readingActivity.ComicReading;
+import com.example.gztruyen.Activity.readingActivity.StoryReading;
 import com.example.gztruyen.CommonUltil.StaticCode;
 import com.example.gztruyen.R;
 import com.example.gztruyen.model.DocumentChap;

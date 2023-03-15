@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.userdetail.UserDetailFragment">
+    tools:context=".fragment.userdetail.UserDetailFragment">
 
     <Button
         android:id="@+id/btnChangeName"

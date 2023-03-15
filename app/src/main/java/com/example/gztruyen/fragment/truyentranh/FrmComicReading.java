@@ -1,4 +1,4 @@
-package com.example.gztruyen.Activity;
+package com.example.gztruyen.fragment.truyentranh;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.gztruyen.CommonUltil.FakeData;
 import com.example.gztruyen.CommonUltil.StaticCode;
 import com.example.gztruyen.R;
-import com.example.gztruyen.adapters.ReadingComicAdapter;
+import com.example.gztruyen.adapters.ComonAdapter.ReadingComicAdapter;
 import com.example.gztruyen.api.FireStoreApi;
 
 import java.util.List;
@@ -68,7 +68,6 @@ public class FrmComicReading extends Fragment {
     }
 
     private void bindingAction(View view) {
-
     }
 
     private void bindingView(View view) {

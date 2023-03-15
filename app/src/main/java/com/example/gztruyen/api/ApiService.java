@@ -1,9 +1,9 @@
 package com.example.gztruyen.api;
 
-import com.example.gztruyen.model.Chap;
 import com.example.gztruyen.model.ComicModel;
 import com.example.gztruyen.model.DocumentChap;
 import com.example.gztruyen.model.QueryResponse;
+import com.example.gztruyen.model.TruyenHot;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -18,6 +18,10 @@ public interface ApiService{
     Call<QueryResponse<DocumentChap>> getAllChap(
             @Path("type") String type,
             @Path("name") String collection
+    );
+    @GET("databases/(default)/documents/{type}")
+    Call<QueryResponse<TruyenHot>> getAllHot(
+            @Path("type") String collection
     );
 
 }

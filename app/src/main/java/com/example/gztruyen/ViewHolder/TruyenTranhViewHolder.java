@@ -13,7 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.gztruyen.Activity.MangaDetailActivity;
+import com.example.gztruyen.Activity.detailActivity.MangaDetailActivity;
 import com.example.gztruyen.CommonUltil.StaticCode;
 import com.example.gztruyen.R;
 import com.example.gztruyen.dbsqlite.DBContextHistory;
@@ -22,7 +22,7 @@ import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
+
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
@@ -47,6 +47,7 @@ public class TruyenTranhViewHolder extends RecyclerView.ViewHolder {
     }
     private void bindingAction(){
         imageView.setOnClickListener(this::onImgClick);
+        titleView.setOnClickListener(this::onImgClick);
         item_truyen_line.setOnClickListener(this::btnItemDetail);
     }
 
@@ -57,7 +58,6 @@ public class TruyenTranhViewHolder extends RecyclerView.ViewHolder {
         i.putExtra("name", name);
         String description = a.getFields().getDescription().getStringValue();
         i.putExtra("description",description);
-        //String url = a.getAvatar().
         ArrayList url = new ArrayList<String>(a.getAvatar());
         i.putStringArrayListExtra("URLImage",url);
 
@@ -88,17 +88,6 @@ public class TruyenTranhViewHolder extends RecyclerView.ViewHolder {
                         .into(imageView);
             }
         }
-    }
-
-    public interface OnItemClickListener {
-        void onItemClick(ComicModel comicModel);
-    }
-    public void setOnItemClickListener(final ComicModel comicModel, final OnItemClickListener onItemClickListener) {
-        imageView.setOnClickListener(this::clickImge);
-    }
-
-    private void clickImge(View view) {
-        Toast.makeText(context, "u press me " + titleView.getText(), Toast.LENGTH_SHORT).show();
     }
 
     public TruyenTranhViewHolder(@NonNull View itemView, Context context) {
