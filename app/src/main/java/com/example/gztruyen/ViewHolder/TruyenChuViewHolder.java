@@ -32,7 +32,6 @@ public class TruyenChuViewHolder extends RecyclerView.ViewHolder{
     private ComicModel a;
     private DBContextHistory db;
 
-    private DBContextHistory db;
 
     private void bindindView() {
         imageView = itemView.findViewById(R.id.imageView);
