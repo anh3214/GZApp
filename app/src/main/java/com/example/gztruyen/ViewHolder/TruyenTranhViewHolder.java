@@ -22,6 +22,7 @@ import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 
 import java.time.LocalDateTime;
+
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
@@ -37,6 +38,7 @@ public class TruyenTranhViewHolder extends RecyclerView.ViewHolder {
         imageView = itemView.findViewById(R.id.imageView);
         titleView = itemView.findViewById(R.id.txView);
         item_truyen_line = itemView.findViewById(R.id.item_truyen_line);
+        db = new DBContextHistory(context);
     }
     private LinearLayout item_truyen_line;
 

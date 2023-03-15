@@ -32,6 +32,8 @@ public class TruyenChuViewHolder extends RecyclerView.ViewHolder{
     private ComicModel a;
     private DBContextHistory db;
 
+    private DBContextHistory db;
+
     private void bindindView() {
         imageView = itemView.findViewById(R.id.imageView);
         titleView = itemView.findViewById(R.id.txView);
@@ -56,6 +58,7 @@ public class TruyenChuViewHolder extends RecyclerView.ViewHolder{
         //String url = a.getAvatar().
         ArrayList url = new ArrayList<String>(a.getAvatar());
         i.putStringArrayListExtra("URLImage",url);
+        
         LocalDateTime now = null;
         String formatDateTime = "";
         context.startActivity(i);
