@@ -37,7 +37,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryViewHolder> {
     public void onBindViewHolder(@NonNull HistoryViewHolder holder, int position) {
         holder.setMangaHistory(chapHistories.get(position));
 
-        holder.setItemClickListener(new ItemClickListener() {
+        holder.setItemClickListener(new com.example.gztruyen.adapters.ComonAdapter.HistoryAdapter.ItemClickListener() {
             @Override
             public void onClick(View view, int position, boolean isLongClick) {
                 if(!isLongClick)
