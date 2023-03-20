@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.gztruyen.CommonUltil.Common;
 import com.example.gztruyen.R;
 import com.example.gztruyen.adapters.HistoryAdapter;
 import com.example.gztruyen.dbsqlite.DBContextHistory;
@@ -25,6 +26,8 @@ public class HistoryFragment extends Fragment {
 
     private DBContextHistory db;
 
+    private boolean isLogin;
+
     public HistoryFragment() {
         // Required empty public constructor
     }
@@ -32,6 +35,7 @@ public class HistoryFragment extends Fragment {
     private void bindingView(View view){
         rcvHistory = view.findViewById(R.id.rcvHistory);
         db = new DBContextHistory(this.getContext());
+        isLogin = Common.getInstance().checkIsLogin(view.getContext());
     }
 
     private void bindingAction(View view){
@@ -52,18 +56,18 @@ public class HistoryFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_history, container, false);
         bindingView(rootView);
         bindingAction(rootView);
-
-        List<ChapterModel> chapHistories = db.listAll();
-        Collections.reverse(chapHistories);
+        if(isLogin){
+            List<ChapterModel> chapHistories = db.listAll();
+            Collections.reverse(chapHistories);
 //        for(int i = 0; i < 20; i++){
 //            chapHistories.add(new ChapterModel((long) i,String.valueOf(R.drawable.img_loading_img),"name"+i, "time"));
 //        }
-        chapHistories.add(new ChapterModel((long) 1,String.valueOf(R.drawable.img_loading_img),"name", "time"));
-        HistoryAdapter adapter = new HistoryAdapter(chapHistories);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this.getContext());
-        rcvHistory.setAdapter(adapter);
-        rcvHistory.setLayoutManager(layoutManager);
+            HistoryAdapter adapter = new HistoryAdapter(chapHistories);
+            LinearLayoutManager layoutManager = new LinearLayoutManager(this.getContext());
+            rcvHistory.setAdapter(adapter);
+            rcvHistory.setLayoutManager(layoutManager);
 
+        }
         return rootView;
     }
 }
