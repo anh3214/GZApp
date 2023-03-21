@@ -58,7 +58,7 @@ public class HistoryFragment extends Fragment {
 //        for(int i = 0; i < 20; i++){
 //            chapHistories.add(new ChapterModel((long) i,String.valueOf(R.drawable.img_loading_img),"name"+i, "time"));
 //        }
-        chapHistories.add(new ChapterModel((long) 1,String.valueOf(R.drawable.img_loading_img),"name", "time"));
+//        chapHistories.add(new ChapterModel((long) 1,String.valueOf(R.drawable.img_loading_img),"name", "time"));
         HistoryAdapter adapter = new HistoryAdapter(chapHistories);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this.getContext());
         rcvHistory.setAdapter(adapter);
