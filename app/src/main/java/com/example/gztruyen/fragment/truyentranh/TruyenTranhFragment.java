@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
@@ -42,6 +43,7 @@ public class TruyenTranhFragment extends Fragment {
     private GridLayoutManager gridLayoutManager;
     private Context context;
     private TextView bxhTextView;
+    private TextView phanLoaiTextView;
 
     public TruyenTranhFragment() {
     }
@@ -72,6 +74,7 @@ public class TruyenTranhFragment extends Fragment {
         imageSlider = view.findViewById(R.id.imageSlider);
         item_truyen = view.findViewById(R.id.item_truyen);
         bxhTextView = view.findViewById(R.id.bangxephang);
+        phanLoaiTextView = view.findViewById(R.id.textPhanLoai);
     }
 
     private void bindingAction(){
@@ -81,7 +84,13 @@ public class TruyenTranhFragment extends Fragment {
         item_truyen.setLayoutManager(gridLayoutManager);
         bxhTextView.setOnClickListener(this::onOpenBangXepHang);
         imageSlider.setItemClickListener(this::itemClicker);
+        phanLoaiTextView.setOnClickListener(this::onOpenPhanLoai);
     }
+
+    private void onOpenPhanLoai(View view) {
+        Toast.makeText(context, "This feature is not support in version V1!", Toast.LENGTH_SHORT).show();
+    }
+
     private void itemClicker(int i) {
         Log.d( "Items","Clicked" + i);
     }
@@ -108,8 +117,9 @@ public class TruyenTranhFragment extends Fragment {
         return list;
     }
     private void btnSearchOnClick(View view) {
-        Intent intent = new Intent(context, SearchActivity.class);
-        startActivity(intent);
+        //Intent intent = new Intent(context, SearchActivity.class);
+        //startActivity(intent);
+        Toast.makeText(context, "This feature is not support in version V1!", Toast.LENGTH_SHORT).show();
     }
 
     private  void onOpenBangXepHang(View view){

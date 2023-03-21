@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.gztruyen.CommonUltil.StaticCode;
 import com.example.gztruyen.R;
 import com.example.gztruyen.fragment.truyenchu.FrmStoryReading;
 
@@ -79,6 +80,12 @@ public class StoryReading extends AppCompatActivity implements TextToSpeech.OnIn
     }
     private void bindingAction() {
         btnTTSStop.setOnClickListener(this::btnTTSStopClick);
+        btnNext.setOnClickListener(this::btnNext);
+    }
+
+    private void btnNext(View view) {
+        Bundle b = getIntent().getExtras();
+        String chap = b.getString(StaticCode.getInstance().getCHAPTER_KEY());
     }
 
     private void btnTTSStopClick(View view) {
@@ -87,7 +94,7 @@ public class StoryReading extends AppCompatActivity implements TextToSpeech.OnIn
 
 
     private void bindingView() {
-
+        btnNext = findViewById(R.id.btnNext);
         tvTitle = findViewById(R.id.tvTitle);
         btnTTS = findViewById(R.id.btnTTS);
         btnTTSStop = findViewById(R.id.btnTTSStop);

@@ -51,7 +51,7 @@ public class TruyenChuViewHolder extends RecyclerView.ViewHolder{
         i.putExtra(StaticCode.getInstance().TYPE_KEY, StaticCode.getInstance().STORY);
         String name = a.getName();
         i.putExtra("name", name);
-        Log.d("name truyen chu", name);
+        //Log.d("name truyen chu", name);
         String description = a.getFields().getDescription().getStringValue();
         i.putExtra("description",description);
         //String url = a.getAvatar().

@@ -83,7 +83,7 @@ public class ChapterViewHolder extends RecyclerView.ViewHolder implements View.O
 
     private void readStoryChapter(View view) {
         String name = a1.getName();
-        Log.d("thanhdt", contentChap);
+        //Log.d("thanhdt", contentChap);
         Intent i = new Intent(context, StoryReading.class);
         i.putExtra("name", name);
         i.putExtra("nameTitle", tvChapter.getText());
