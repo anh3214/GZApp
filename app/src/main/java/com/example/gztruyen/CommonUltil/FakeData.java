@@ -17,20 +17,20 @@ public class FakeData {
     }
     public List<String> fakeListPageComic(){
         List<String> list = new ArrayList<>();
-        for (int i = 0; i < 35; i++) {
-            list.add(
-                    ("https://www.kotaku.com.au/wp-content/uploads/sites/3/2022/11/30/reading-manga-one-punch-man.png")
-            );
-        }
+//        for (int i = 0; i < 35; i++) {
+//            list.add(
+//                    ("https://www.kotaku.com.au/wp-content/uploads/sites/3/2022/11/30/reading-manga-one-punch-man.png")
+//            );
+//        }
         return list;
     }
 
     public List<ComicModel> fakeDataComic() {
         List<ComicModel> list = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            ComicModel c = new ComicModel("12" + i, null, "test des", "bac");
-            list.add(c);
-        }
+//        for (int i = 0; i < 5; i++) {
+//            ComicModel c = new ComicModel("12" + i, null, "test des", "bac");
+//            list.add(c);
+//        }
         return list;
     }
 }
